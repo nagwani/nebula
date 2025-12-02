@@ -1,53 +1,53 @@
-import { cn } from "@/lib/utils";
-import FormattedText from "@/lib/FormattedText";
-import { cva } from "class-variance-authority";
-import Heading from "@/components/heading";
 import Button from "@/components/button";
+import Heading from "@/components/heading";
+import FormattedText from "@/lib/FormattedText";
+import { cn } from "@/lib/utils";
+import { cva } from "class-variance-authority";
 import Image from "next-image-standalone";
 
 const passthroughLoader = ({ src }) => src;
 
 const cardVariants = cva(
-  'max-w-md gap-4 rounded-2xl pb-6 flex w-full flex-col items-center leading-[normal]',
+  "flex w-full max-w-md flex-col items-center gap-4 rounded-2xl pb-6 leading-[normal]",
   {
     variants: {
       layout: {
-        'Left aligned': 'items-start text-left',
-        'Center aligned': 'items-center text-center',
-        'Right aligned': 'items-end text-right',
+        "Left aligned": "items-start text-left",
+        "Center aligned": "items-center text-center",
+        "Right aligned": "items-end text-right",
       },
       textColor: {
         Default: null,
-        Dark: 'text-primary-dark',
-        Light: 'text-white',
+        Dark: "text-primary-dark",
+        Light: "text-white",
       },
       image: {
         true: null,
-        false: 'pt-8',
+        false: "pt-8",
       },
     },
     defaultVariants: {
-      textColor: 'Default',
+      textColor: "Default",
     },
-  }
-)
+  },
+);
 
 const Card = ({
-  backgroundColor = '#ffffff',
-  backgroundColorOnHover = '#E2E8F0',
+  backgroundColor = "#ffffff",
+  backgroundColorOnHover = "#E2E8F0",
   className,
   image,
   heading,
-  headingElement = 'h2',
-  layout = 'Left aligned',
+  headingElement = "h2",
+  layout = "Left aligned",
   link,
   linkLabel,
-  linkVariant = 'link',
+  linkVariant = "link",
   text,
   textColor,
 }) => {
-  const cardBackgroundClassName = `card-${backgroundColor.substring(1)}`
-  const cardBackgroundClassNameOnHover = `card-${backgroundColorOnHover.substring(1)}`
+  const cardBackgroundClassName = `card-${backgroundColor.substring(1)}`;
+  const cardBackgroundClassNameOnHover = `card-${backgroundColorOnHover.substring(1)}`;
   const { src, alt, width, height } = image;
 
   return (
@@ -67,7 +67,7 @@ const Card = ({
           cardVariants({ layout, textColor, image: !!image }),
           cardBackgroundClassName,
           cardBackgroundClassNameOnHover,
-          className
+          className,
         )}
       >
         {image && (
@@ -88,7 +88,9 @@ const Card = ({
               textColor={textColor}
             />
           )}
-          {text && <FormattedText className="mb-4 leading-6">{text}</FormattedText>}
+          {text && (
+            <FormattedText className="mb-4 leading-6">{text}</FormattedText>
+          )}
           {link && linkLabel && (
             <Button link={link} variant={linkVariant}>
               {linkLabel}
@@ -97,7 +99,7 @@ const Card = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

@@ -1,22 +1,20 @@
+import GridContainer from "@/components/grid_container";
+import Heading from "@/components/heading";
 import { cn } from "@/lib/utils";
-import Heading from '@/components/heading';
-import GridContainer from '@/components/grid_container'
-
 
 const ThreeColumnCardContainer = ({
-  children,
   className,
   headingPosition,
   heading,
   headingLevel,
-  headingSize = 'Large',
+  headingSize = "Large",
   preHeading,
   textColor,
   layout,
-  content
+  content,
 }) => {
   return (
-    <div className={cn('gap-16 flex flex-col items-center mx-6', className)}>
+    <div className={cn("mx-6 flex flex-col items-center gap-16", className)}>
       {heading ? (
         <Heading
           heading={heading}
@@ -32,4 +30,4 @@ const ThreeColumnCardContainer = ({
   );
 };
 
-export default ThreeColumnCardContainer
+export default ThreeColumnCardContainer;

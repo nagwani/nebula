@@ -1,4 +1,4 @@
-import { getPageData } from '@/lib/drupal-utils';
+import { getPageData } from "@/lib/drupal-utils";
 
 const Breadcrumb = () => {
   const { breadcrumbs } = getPageData();

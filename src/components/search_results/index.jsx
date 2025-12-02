@@ -65,7 +65,8 @@ export default function SearchResults({
   );
 
   const results = propResults || data || [];
-  const [links, setLinks] = useState({});
+  // Links would be populated from API response in production
+  const links = {};
 
   const handlePage = (link) => {
     const offset = getOffsetFromLink(link);

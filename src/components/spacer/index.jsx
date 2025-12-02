@@ -13,9 +13,6 @@
 // Import your other code components to use within this component:
 // import Heading from '@/components/my_heading'
 
-// Combine classes with the cn() utility function.
-// @see https://git.drupalcode.org/project/canvas/-/blob/0.x/ui/lib/astro-hydration/src/lib/utils.ts
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 
 const spacerVariants = cva("", {
@@ -24,17 +21,13 @@ const spacerVariants = cva("", {
       Small: "h-8",
       Medium: "h-12",
       Large: "h-16",
-      'Extra Large': "h-24",
-    }
-  }
-})
+      "Extra Large": "h-24",
+    },
+  },
+});
 
-const Spacer = ({
-  height = "Small",
-}) => {
-  return (
-    <div className={spacerVariants({ height })}>&nbsp;</div>
-  );
+const Spacer = ({ height = "Small" }) => {
+  return <div className={spacerVariants({ height })}>&nbsp;</div>;
 };
 
-export default Spacer
+export default Spacer;

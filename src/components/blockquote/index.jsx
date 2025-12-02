@@ -1,5 +1,5 @@
-import { cva } from "class-variance-authority";
 import FormattedText from "@/lib/FormattedText";
+import { cva } from "class-variance-authority";
 
 const blockquoteVariants = cva("my-8 flex w-full flex-col leading-[normal]", {
   variants: {
@@ -48,4 +48,4 @@ const Blockquote = ({ text, textColor, name, title }) => {
   );
 };
 
-export default Blockquote
+export default Blockquote;

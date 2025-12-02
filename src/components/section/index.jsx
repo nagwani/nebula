@@ -13,4 +13,4 @@ const Section = ({ width, content }) => {
   return <div className={sectionVariants({ width })}>{content}</div>;
 };
 
-export default Section
+export default Section;
