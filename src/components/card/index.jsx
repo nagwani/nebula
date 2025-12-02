@@ -5,8 +5,6 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import Image from "next-image-standalone";
 
-const passthroughLoader = ({ src }) => src;
-
 const cardVariants = cva(
   "flex w-full max-w-md flex-col items-center gap-4 rounded-2xl pb-6 leading-[normal]",
   {
@@ -73,7 +71,6 @@ const Card = ({
         {image && (
           <Image
             {...{ src, alt, width, height }}
-            loader={passthroughLoader}
             className="w-full rounded-2xl object-cover object-center"
           />
         )}

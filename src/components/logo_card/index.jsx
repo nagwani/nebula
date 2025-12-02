@@ -1,7 +1,5 @@
 import Image from "next-image-standalone";
 
-const passthroughLoader = ({ src }) => src;
-
 const LogoCard = ({ backgroundColor = "#F1F5F9", image }) => {
   const { src, alt, width, height } = image;
   return (
@@ -11,7 +9,6 @@ const LogoCard = ({ backgroundColor = "#F1F5F9", image }) => {
     >
       <Image
         {...{ src, alt, width, height }}
-        loader={passthroughLoader}
         className="h-auto w-50 object-contain"
       />
     </div>

@@ -3,21 +3,13 @@ import { JsonApiClient } from "@drupal-api-client/json-api-client";
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 import useSWR from "swr";
 
-// Safe access to window for SSR/Storybook compatibility
 const getSearchQuery = () => {
   if (typeof window === "undefined") return "";
   const searchParams = new URLSearchParams(window.location.search);
   return searchParams.get("q") || "";
 };
 
-// Lazy-initialize client only when needed (avoids baseUrl error in Storybook)
-let client = null;
-const getClient = () => {
-  if (!client) {
-    client = new JsonApiClient();
-  }
-  return client;
-};
+const client = new JsonApiClient();
 
 function getOffsetFromLink(link) {
   if (!link || !link.href) return null;
@@ -30,43 +22,27 @@ function getOffsetFromLink(link) {
   }
 }
 
-/**
- * SearchResults component
- * @param {Object} props
- * @param {Array} [props.results] - Optional array of search results. If provided, skips API fetch.
- *   Each result should have: { title, path: { alias } }
- * @param {boolean} [props.showPagination] - Whether to show pagination buttons (for mock data)
- */
-export default function SearchResults({
-  results: propResults,
-  showPagination = false,
-}) {
+export default function SearchResults() {
   const [pageOffset, setPageOffset] = useState(0);
   const q = getSearchQuery();
 
-  // Only fetch from API if results are not provided via props
-  const shouldFetch = !propResults;
-  const { data, error, isLoading } = useSWR(
-    shouldFetch
-      ? [
-          "index--cms_content",
-          {
-            queryString: new DrupalJsonApiParams()
-              .addFields("node--article", ["title", "path"])
-              .addFields("canvas_page--canvas_page", ["title", "path"])
-              .addFilter("fulltext", q)
-              .addPageLimit(10)
-              .addPageOffset(pageOffset)
-              .getQueryString(),
-          },
-        ]
-      : null,
-    ([type, options]) => getClient().getCollection(type, options),
+  const { data, error, isLoading, links } = useSWR(
+    [
+      "index--cms_content",
+      {
+        queryString: new DrupalJsonApiParams()
+          .addFields("node--article", ["title", "path"])
+          .addFields("canvas_page--canvas_page", ["title", "path"])
+          .addFilter("fulltext", q)
+          .addPageLimit(10)
+          .addPageOffset(pageOffset)
+          .getQueryString(),
+      },
+    ],
+    ([type, options]) => client.getCollection(type, options),
   );
 
-  const results = propResults || data || [];
-  // Links would be populated from API response in production
-  const links = {};
+  const results = data || [];
 
   const handlePage = (link) => {
     const offset = getOffsetFromLink(link);
@@ -75,8 +51,8 @@ export default function SearchResults({
     }
   };
 
-  if (!propResults && error) return "An error has occurred.";
-  if (!propResults && isLoading) return "Loading...";
+  if (error) return "An error has occurred.";
+  if (isLoading) return "Loading...";
 
   return (
     <div>
@@ -93,9 +69,9 @@ export default function SearchResults({
           </li>
         ))}
       </ul>
-      {(showPagination || links.prev || links.next) && (
+      {(links?.prev || links?.next) && (
         <div className="mt-4 flex gap-2">
-          {(showPagination || links.prev) && (
+          {links?.prev && (
             <button
               onClick={() => handlePage(links.prev)}
               className="flex items-center justify-between rounded rounded-xl border border-[#E5E7EB] bg-white px-2 py-1 text-sm text-[#6B7280]"
@@ -118,7 +94,7 @@ export default function SearchResults({
               Previous
             </button>
           )}
-          {(showPagination || links.next) && (
+          {links?.next && (
             <button
               onClick={() => handlePage(links.next)}
               className="flex items-center justify-between rounded rounded-xl border border-[#E5E7EB] bg-white px-2 py-1 text-sm text-[#6B7280]"

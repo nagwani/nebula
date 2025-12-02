@@ -4,31 +4,15 @@ import { cn } from "@/lib/utils";
 import { JsonApiClient } from "@drupal-api-client/json-api-client";
 import useSWR from "swr";
 
-// Lazy-initialize client only when needed (avoids baseUrl error in Storybook)
-let client = null;
-const getClient = () => {
-  if (!client) {
-    client = new JsonApiClient();
-  }
-  return client;
-};
+const client = new JsonApiClient();
 
-/**
- * MainNavigation component
- * @param {Object} props
- * @param {Array} [props.links] - Optional array of navigation links. If provided, skips API fetch.
- *   Each link should have: { id, title, url }
- */
-const MainNavigation = ({ links: propLinks }) => {
-  // Only fetch from API if links are not provided via props
-  const shouldFetch = !propLinks;
+const MainNavigation = () => {
   const { data, error, isLoading } = useSWR(
-    shouldFetch ? ["menu_items", "main"] : null,
-    ([type, resourceId]) => getClient().getResource(type, resourceId),
+    ["menu_items", "main"],
+    ([type, resourceId]) => client.getResource(type, resourceId),
   );
 
-  const links =
-    propLinks || (!error && !isLoading ? Array.from(sortMenu(data)) : []);
+  const links = !error && !isLoading ? Array.from(sortMenu(data)) : [];
   const [open, setOpen] = useState(false);
   return (
     <>

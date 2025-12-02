@@ -11,7 +11,17 @@ export default defineConfig({
   resolve: {
     alias: {
       "@/components": path.resolve(DIR, "./src/components"),
-      "@/lib": path.resolve(DIR, "./src/lib"),
+      // All @/lib imports point to mocks for local development.
+      // @todo Remove after https://drupal.org/i/3560419.
+      "@/lib": path.resolve(DIR, "./src/lib/mocks"),
+      "@drupal-api-client/json-api-client": path.resolve(
+        DIR,
+        "./src/lib/mocks/drupal-api-client-json-api-client.js",
+      ),
+      "next-image-standalone": path.resolve(
+        DIR,
+        "./src/lib/mocks/next-image-standalone.jsx",
+      ),
     },
   },
 });

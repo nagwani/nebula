@@ -3,8 +3,6 @@ import Text from "@/components/text";
 import { cva } from "class-variance-authority";
 import ResponsiveImage from "next-image-standalone";
 
-const passthroughLoader = ({ src }) => src;
-
 const heroVariants = cva("mx-auto flex w-full max-w-[1360px] flex-col gap-8", {
   variants: {
     layout: {
@@ -78,11 +76,7 @@ const ContentImage = ({ image, className }) => {
   }
   const { src, alt, width, height } = image;
   return (
-    <ResponsiveImage
-      {...{ src, alt, width, height }}
-      loader={passthroughLoader}
-      className={className}
-    />
+    <ResponsiveImage {...{ src, alt, width, height }} className={className} />
   );
 };
 

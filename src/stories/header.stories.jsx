@@ -18,20 +18,12 @@ export default {
   },
 };
 
-const mockNavLinks = [
-  { id: "1", title: "Home", url: "/" },
-  { id: "2", title: "Products", url: "/products" },
-  { id: "3", title: "Services", url: "/services" },
-  { id: "4", title: "About", url: "/about" },
-  { id: "5", title: "Contact", url: "/contact" },
-];
-
 export const Default = {
   args: {
     displaySearchForm: true,
     backgroundColor: "#ffffff",
     logo: <Logo />,
-    menu: <MainNavigation links={mockNavLinks} />,
+    menu: <MainNavigation />,
   },
 };
 
@@ -40,7 +32,7 @@ export const WithoutSearch = {
     displaySearchForm: false,
     backgroundColor: "#ffffff",
     logo: <Logo />,
-    menu: <MainNavigation links={mockNavLinks} />,
+    menu: <MainNavigation />,
   },
 };
 
@@ -49,7 +41,7 @@ export const CustomBackground = {
     displaySearchForm: true,
     backgroundColor: "#F8FAFC",
     logo: <Logo />,
-    menu: <MainNavigation links={mockNavLinks} />,
+    menu: <MainNavigation />,
   },
 };
 
@@ -58,13 +50,6 @@ export const MinimalNav = {
     displaySearchForm: false,
     backgroundColor: "#ffffff",
     logo: <Logo />,
-    menu: (
-      <MainNavigation
-        links={[
-          { id: "1", title: "Home", url: "/" },
-          { id: "2", title: "About", url: "/about" },
-        ]}
-      />
-    ),
+    menu: <MainNavigation />,
   },
 };
