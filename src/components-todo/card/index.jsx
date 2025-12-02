@@ -1,0 +1,100 @@
+import { cn } from "@/lib/utils";
+import FormattedText from "@/lib/FormattedText";
+import { cva } from 'class-variance-authority'
+import Heading from '@/components/heading'
+import Button from '@/components/button'
+import Image from 'next-image-standalone';
+
+const cardVariants = cva(
+  'max-w-md gap-4 rounded-2xl pb-6 flex w-full flex-col items-center leading-[normal]',
+  {
+    variants: {
+      layout: {
+        'Left aligned': 'items-start text-left',
+        'Center aligned': 'items-center text-center',
+        'Right aligned': 'items-end text-right',
+      },
+      textColor: {
+        Default: null,
+        Dark: 'text-primary-dark',
+        Light: 'text-white',
+      },
+      image: {
+        true: null,
+        false: 'pt-8',
+      },
+    },
+    defaultVariants: {
+      textColor: 'Default',
+    },
+  }
+)
+
+const Card = ({
+  backgroundColor = '#ffffff',
+  backgroundColorOnHover = '#E2E8F0',
+  className,
+  image,
+  heading,
+  headingElement = 'h2',
+  layout = 'Left aligned',
+  link,
+  linkLabel,
+  linkVariant = 'link',
+  text,
+  textColor,
+}) => {
+  const cardBackgroundClassName = `card-${backgroundColor.substring(1)}`
+  const cardBackgroundClassNameOnHover = `card-${backgroundColorOnHover.substring(1)}`
+  const { src, alt, width, height } = image;
+
+  return (
+    <>
+      <style>
+        {`
+          .${cardBackgroundClassName} {
+            background-color: ${backgroundColor};
+          }
+          .${cardBackgroundClassNameOnHover}:hover {
+            background-color: ${backgroundColorOnHover};
+          }
+        `}
+      </style>
+      <div
+        className={cn(
+          cardVariants({ layout, textColor, image: !!image }),
+          cardBackgroundClassName,
+          cardBackgroundClassNameOnHover,
+          className
+        )}
+      >
+        {image && (
+          <Image
+            {...{ src, alt, width, height}}
+            className="rounded-2xl w-full object-cover object-center"
+          />
+        )}
+        <div className="px-6 pt-2">
+          {heading && (
+            <Heading
+              className="mb-2"
+              heading={heading}
+              headingElement={headingElement}
+              headingSize="Small"
+              layout={layout}
+              textColor={textColor}
+            />
+          )}
+          {text && <FormattedText className="mb-4 leading-6">{text}</FormattedText>}
+          {link && linkLabel && (
+            <Button link={link} variant={linkVariant}>
+              {linkLabel}
+            </Button>
+          )}
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default Card

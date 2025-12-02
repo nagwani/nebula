@@ -1,0 +1,58 @@
+name: Heading
+machineName: heading
+status: true
+required:
+  - textColor
+  - headingElement
+  - headingSize
+  - layout
+props:
+  properties:
+    preHeading:
+      title: Pre Heading
+      type: string
+    heading:
+      title: Heading
+      type: string
+      examples:
+        - Enter a heading...
+    textColor:
+      title: Text Color
+      type: string
+      examples:
+        - Dark
+      enum:
+        - Dark
+        - Light
+    headingElement:
+      title: Heading Element
+      type: string
+      examples:
+        - h2
+      enum:
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+    headingSize:
+      title: Heading Size
+      type: string
+      examples:
+        - Medium
+      enum:
+        - Small
+        - Medium
+        - Large
+        - Extra Large
+    layout:
+      title: Layout
+      type: string
+      examples:
+        - Left aligned
+      enum:
+        - Left aligned
+        - Center aligned
+        - Right aligned
+slots: []
