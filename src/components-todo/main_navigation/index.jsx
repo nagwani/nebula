@@ -1,19 +1,27 @@
-import useSWR from "swr";
-import { JsonApiClient } from "@drupal-api-client/json-api-client";
-import { sortMenu } from '@/lib/jsonapi-utils';
-import { getSiteData } from '@/lib/drupal-utils';
-import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { sortMenu } from "@/lib/jsonapi-utils";
+import { cn } from "@/lib/utils";
+import { JsonApiClient } from "@drupal-api-client/json-api-client";
+import useSWR from "swr";
 
 const client = new JsonApiClient();
 
-const MainNavigation = () => {
+/**
+ * MainNavigation component
+ * @param {Object} props
+ * @param {Array} [props.links] - Optional array of navigation links. If provided, skips API fetch.
+ *   Each link should have: { id, title, url }
+ */
+const MainNavigation = ({ links: propLinks }) => {
+  // Only fetch from API if links are not provided via props
+  const shouldFetch = !propLinks;
   const { data, error, isLoading } = useSWR(
-    ['menu_items', 'main'],
+    shouldFetch ? ["menu_items", "main"] : null,
     ([type, resourceId]) => client.getResource(type, resourceId),
   );
 
-  const links = (!error && !isLoading) ? Array.from(sortMenu(data)) : [];
+  const links =
+    propLinks || (!error && !isLoading ? Array.from(sortMenu(data)) : []);
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -71,23 +79,16 @@ const MainNavigation = () => {
       >
         <div className="max-h-[75vh] overflow-hidden overflow-y-auto">
           <div className="flex flex-col gap-0.5 py-2 md:flex-row md:items-center md:justify-center md:gap-1 md:py-0">
-            {links.map(
-              ({
-                 id,
-                 title,
-                 url,
-                 expanded,
-               }) => (
-                <a
-                  key={id}
-                  href={url}
-                  className="flex items-center p-2 text-md text-black hover:text-blue-500 focus:text-blue-600 focus:outline-none dark:text-blue-500 dark:focus:text-blue-500"
-                  aria-current="page"
-                >
-                  {title}
-                </a>
-              ),
-            )}
+            {links.map(({ id, title, url }) => (
+              <a
+                key={id}
+                href={url}
+                className="text-md flex items-center p-2 text-black hover:text-blue-500 focus:text-blue-600 focus:outline-none dark:text-blue-500 dark:focus:text-blue-500"
+                aria-current="page"
+              >
+                {title}
+              </a>
+            ))}
           </div>
         </div>
       </nav>
@@ -95,5 +96,4 @@ const MainNavigation = () => {
   );
 };
 
-export default MainNavigation
-
+export default MainNavigation;

@@ -1,33 +1,16 @@
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 
-const Section = ({ content, backgroundColor = "base" }) => {
-  const sectionVariants = cva("", {
-    variants: {
-      backgroundColor: {
-        base: "bg-base",
-        mantle: "bg-mantle",
-        crust: "bg-crust",
-      },
+const sectionVariants = cva("m-auto my-8 px-4", {
+  variants: {
+    width: {
+      Normal: "max-w-2xl",
+      Wide: "max-w-4xl",
     },
-    defaultVariants: {
-      backgroundColor: "base",
-    },
-  });
+  },
+});
 
-  return (
-    <section
-      className={cn(
-        sectionVariants({
-          backgroundColor,
-        }),
-      )}
-    >
-      <div className="mx-auto flex max-w-screen-xl min-w-sm flex-col items-center gap-6 p-12 px-4 md:p-16 md:px-12 lg:gap-8 lg:px-16">
-        {content}
-      </div>
-    </section>
-  );
+const Section = ({ width, content }) => {
+  return <div className={sectionVariants({ width })}>{content}</div>;
 };
 
-export default Section;
+export default Section

@@ -2,25 +2,17 @@ name: Section
 machineName: section
 status: true
 required:
-  - backgroundColor
+  - width
 props:
   properties:
-    backgroundColor:
-      title: Background color
+    width:
+      title: Width
       type: string
-      enum:
-        - base
-        - mantle
-        - crust
-      meta:enum:
-        base: Base
-        mantle: Mantle
-        crust: Crust
       examples:
-        - mantle
-        - crust
+        - Normal
+      enum:
+        - Normal
+        - Wide
 slots:
   content:
     title: Content
-importedJsComponents: []
-dataDependencies: []

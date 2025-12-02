@@ -1,0 +1,26 @@
+name: Section
+machineName: section
+status: true
+required:
+  - backgroundColor
+props:
+  properties:
+    backgroundColor:
+      title: Background color
+      type: string
+      enum:
+        - base
+        - mantle
+        - crust
+      meta:enum:
+        base: Base
+        mantle: Mantle
+        crust: Crust
+      examples:
+        - mantle
+        - crust
+slots:
+  content:
+    title: Content
+importedJsComponents: []
+dataDependencies: []

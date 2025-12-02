@@ -1,27 +1,16 @@
 name: Header
 machineName: header
 status: true
-required:
-  - backgroundColor
+required: []
 props:
   properties:
-    backgroundColor:
-      title: Background color
-      type: string
-      enum:
-        - base
-        - mantle
-        - crust
-      meta:enum:
-        base: Base
-        mantle: Mantle
-        crust: Crust
+    displaySearchForm:
+      title: Display Search Form
+      type: boolean
       examples:
-        - crust
+        - true
 slots:
-  branding:
-    title: Branding
-  navigation:
-    title: Navigation
-importedJsComponents: []
-dataDependencies: []
+  logo:
+    title: Logo
+  menu:
+    title: Menu

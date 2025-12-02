@@ -1,33 +1,43 @@
-import Heading from "@/components/heading";
-import Paragraph from "@/components/paragraph";
 import Section from "@/components/section";
 
 import { getComponentExamples } from "./lib/get-examples";
 
-const exampleSectionArgs = await getComponentExamples("section");
-const exampleHeadingArgs = await getComponentExamples("heading");
-const exampleParagraphArgs = await getComponentExamples("paragraph");
+const exampleArgs = await getComponentExamples("section");
 
 export default {
   title: "Components/Section",
   component: Section,
   argTypes: {
-    backgroundColor: {
+    width: {
       control: "select",
-      options: ["base", "mantle", "crust"],
+      options: ["Normal", "Wide"],
     },
   },
 };
 
+const SampleContent = () => (
+  <div className="rounded-lg bg-blue-100 p-4 text-center text-blue-800">
+    Section Content
+  </div>
+);
+
 export const Default = {
   args: {
-    content: (
-      <>
-        <Heading {...exampleHeadingArgs[0]} />
-        <Paragraph {...exampleParagraphArgs[0]} />
-      </>
-    ),
-    ...exampleSectionArgs[0],
-    backgroundColor: "base",
+    ...exampleArgs[0],
+    content: <SampleContent />,
+  },
+};
+
+export const Normal = {
+  args: {
+    width: "Normal",
+    content: <SampleContent />,
+  },
+};
+
+export const Wide = {
+  args: {
+    width: "Wide",
+    content: <SampleContent />,
   },
 };

@@ -1,55 +1,57 @@
-import { cva } from 'class-variance-authority';
-import Button from '@/components/button'
-import Text from '@/components/text'
-import Heading from '@/components/heading'
-import ResponsiveImage from 'next-image-standalone';
+import Button from "@/components/button";
+import Heading from "@/components/heading";
+import Text from "@/components/text";
+import { cva } from "class-variance-authority";
+import ResponsiveImage from "next-image-standalone";
 
-const backgroundVariants = cva('align-center px-8 py-16 h-full w-full', {
+const passthroughLoader = ({ src }) => src;
+
+const backgroundVariants = cva("align-center h-full w-full px-8 py-16", {
   variants: {
     darkenImage: {
       false: null,
-      true: 'backdrop-brightness-75',
+      true: "backdrop-brightness-75",
     },
   },
-})
+});
 
-const heroVariants = cva('gap-8 mx-auto flex w-full max-w-[1360px] flex-col', {
+const heroVariants = cva("mx-auto flex w-full max-w-[1360px] flex-col gap-8", {
   variants: {
     layout: {
-      'Left Aligned': 'md:flex-row items-start justify-between',
-      Centered: 'flex-col items-center justify-center text-center',
+      "Left Aligned": "items-start justify-between md:flex-row",
+      Centered: "flex-col items-center justify-center text-center",
     },
   },
   defaultVariants: {
-    layout: 'leftAligned',
+    layout: "leftAligned",
   },
-})
+});
 
 const TwoColumnText = ({
   layout,
   preHeading,
   heading,
   headingElement,
-  headingSize = 'Large',
+  headingSize = "Large",
   text,
   buttons,
-  textColor = 'Dark',
+  textColor = "Dark",
   image,
   rightColumn,
   textShadow,
 }) => {
   const getButtonVariant = (style) => {
-    if (style === 'Outline') {
-      return textColor === 'Dark' ? 'Outline Dark' : 'Outline Light'
+    if (style === "Outline") {
+      return textColor === "Dark" ? "Outline Dark" : "Outline Light";
     }
-    return 'solid'
-  }
+    return "solid";
+  };
   return (
-    <div className="py-24 flex w-full justify-start bg-cover bg-center bg-no-repeat">
-      <div className="flex w-full items-center justify-center mx-6">
+    <div className="flex w-full justify-start bg-cover bg-center bg-no-repeat py-24">
+      <div className="mx-6 flex w-full items-center justify-center">
         <div className={heroVariants({ layout })}>
           <div
-            className={`max-w-xl gap-4 xl:max-w-lg flex flex-col items-start justify-start ${layout === 'centered' ? 'items-center' : 'items-start'}`}
+            className={`flex max-w-xl flex-col items-start justify-start gap-4 xl:max-w-lg ${layout === "centered" ? "items-center" : "items-start"}`}
           >
             <div className="mb-4">
               <Heading
@@ -71,32 +73,33 @@ const TwoColumnText = ({
               />
             )}
             <div
-              className={`gap-4 flex w-full min-w-3xs ${layout === 'centered' ? 'justify-center' : 'justify-start'}`}
+              className={`flex w-full min-w-3xs gap-4 ${layout === "centered" ? "justify-center" : "justify-start"}`}
             >
               {buttons}
             </div>
           </div>
-          <div className="max-w-3xl flex">
-            <Image image={image} className="max-w-full h-auto" />
+          <div className="flex max-w-3xl">
+            <Image image={image} className="h-auto max-w-full" />
             {rightColumn}
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-const Image = ({image, className}) => {
+const Image = ({ image, className }) => {
   if (!image) {
     return null;
   }
   const { src, alt, width, height } = image;
   return (
     <ResponsiveImage
-      { ...{ src, alt, width, height } }
+      {...{ src, alt, width, height }}
+      loader={passthroughLoader}
       className={className}
     />
   );
-}
+};
 
-export default TwoColumnText
+export default TwoColumnText;

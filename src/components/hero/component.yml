@@ -2,62 +2,77 @@ name: Hero
 machineName: hero
 status: true
 required:
-  - title
-  - description
-  - buttonLabel
-  - buttonLink
-  - backgroundColor
+  - layout
+  - headingSize
+  - textColor
 props:
   properties:
-    title:
-      title: Title
+    backgroundImage:
+      title: Background Image
+      type: object
+      examples:
+        - src: https://placehold.co/1920x1080@2x.png
+          alt: Example image placeholder
+          width: 1920
+          height: 1080
+      $ref: json-schema-definitions://canvas.module/image
+    layout:
+      title: Layout
       type: string
       examples:
-        - White-label human intelligence for your AI projects
-    description:
-      title: Description
+        - Left aligned
+      enum:
+        - Left aligned
+        - Centered
+    preHeading:
+      title: Pre Heading
       type: string
-      contentMediaType: text/html
-      x-formatting-context: block
+      examples:
+        - Mission
+    headingElement:
+      title: Heading Element
+      type: string
+      examples:
+        - h2
+      enum:
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+    headingSize:
+      title: Heading Size
+      type: string
+      examples:
+        - Extra Large
+      enum:
+        - Extra Large
+        - Large
+        - Medium
+        - Small
+    heading:
+      title: Heading
+      type: string
+      examples:
+        - This space deserves a hero.
+    text:
+      title: Text
+      type: string
       examples:
         - >-
-          Leverage a team of smart, creative, and experienced humans, who
-          <em>actually</em> know what they're doing. We deliver the work, and
-          you can tell your customers and investors that it was done with AI.
-    buttonLabel:
-      title: Button label
+          This is a space to welcome visitors to the site. Grab their attention
+          with copy that clearly states what the site is about.
+      contentMediaType: text/html
+      x-formatting-context: block
+    textColor:
+      title: Text Color
       type: string
       examples:
-        - Get started today
-    buttonLink:
-      title: Button link
-      type: string
-      format: uri-reference
-      examples:
-        - page/1
-    image:
-      title: Image
-      type: object
-      $ref: json-schema-definitions://canvas.module/image
-      examples:
-        - src: >-
-            https://images.unsplash.com/photo-1484959014842-cd1d967a39cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80
-          alt: Woman playing the violin
-          width: 1770
-          height: 1180
-    backgroundColor:
-      title: Background color
-      type: string
+        - Dark
       enum:
-        - base
-        - mantle
-        - crust
-      meta:enum:
-        base: Base
-        mantle: Mantle
-        crust: Crust
-      examples:
-        - crust
-slots: []
-importedJsComponents: []
-dataDependencies: []
+        - Dark
+        - Light
+slots:
+  buttons:
+    title: Buttons

@@ -1,111 +1,44 @@
-/* 
- * Loading fonts purely via Code Components in Drupal Canvas is currently best
- * done by importing a CSS file with the font declarations from a URL, i.e. a
- * CDN.
- * Alternatively, you can create a minimal Drupal theme that loads local fonts.
- * (If you do that, you can import the same font, e.g., from a Fontsource package
- * in `.storybook/preview.js`.)
- */
-@import url("https://rsms.me/inter/inter.css");
-
-/*
- * Importing Tailwind CSS after the font import, so PostCSS is happy with the
- * @import order. This is not necessary using the in-browser code editor, which
- * will take care of both importing all layers from Tailwind CSS, as well as
- * moving font imports to the top before compiling.
- */
 @import "tailwindcss";
 
-/*
- * Colors are based on the Catpuccin color palette.
- * @see https://catppuccin.com
- * @see https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md
- *
- * Using "Latte" flavor for light colors.
- * @see https://catppuccin.com/palette/#flavor-latte
- */
-:root {
-  --catpuccin-base: hsl(220deg, 23%, 95%);
-  --catpuccin-mantle: hsl(220deg, 22%, 92%);
-  --catpuccin-crust: hsl(220deg, 21%, 89%);
-  --catpuccin-surface-0: hsl(223deg, 16%, 83%);
-  --catpuccin-surface-1: hsl(225deg, 14%, 77%);
-  --catpuccin-surface-2: hsl(227deg, 12%, 71%);
-  --catpuccin-text: hsl(234deg, 16%, 35%);
-  --catpuccin-subtext-0: hsl(233deg, 10%, 47%);
-  --catpuccin-subtext-1: hsl(233deg, 13%, 41%);
+@theme {
+  --font-sans:
+    Inter, Roboto, "Helvetica Neue", "Arial Nova", "Nimbus Sans", Arial,
+    sans-serif;
 
-  --catpuccin-rosewater: hsl(11deg, 59%, 67%);
-  --catpuccin-flamingo: hsl(0deg, 60%, 67%);
-  --catpuccin-pink: hsl(316deg, 73%, 69%);
-  --catpuccin-mauve: hsl(266deg, 85%, 58%);
-  --catpuccin-red: hsl(347deg, 87%, 44%);
-  --catpuccin-maroon: hsl(355deg, 76%, 59%);
-  --catpuccin-peach: hsl(22deg, 99%, 52%);
-  --catpuccin-yellow: hsl(35deg, 77%, 49%);
-  --catpuccin-green: hsl(109deg, 58%, 40%);
-  --catpuccin-teal: hsl(183deg, 74%, 35%);
-  --catpuccin-sky: hsl(197deg, 97%, 46%);
-  --catpuccin-sapphire: hsl(189deg, 70%, 42%);
-  --catpuccin-blue: hsl(220deg, 91%, 54%);
-  --catpuccin-lavender: hsl(231deg, 97%, 72%);
+  --color-primary-100: var(--color-blue-100);
+  --color-primary-200: var(--color-blue-200);
+  --color-primary-300: var(--color-blue-300);
+  --color-primary-400: var(--color-blue-400);
+  --color-primary-500: var(--color-blue-500);
+  --color-primary-600: var(--color-blue-600);
+  --color-primary-700: var(--color-blue-700);
+  --color-primary-800: var(--color-blue-800);
+  --color-primary-900: var(--color-blue-900);
+
+  /* use for light and dark blue text */
+  --color-primary-dark: var(--color-primary-700);
+  --color-primary-light: var(--color-slate-400);
+
+  --color-gray-50: var(--color-slate-50);
+  --color-gray-100: var(--color-slate-100);
+  --color-gray-200: var(--color-slate-200);
+  --color-gray-300: var(--color-slate-300);
+  --color-gray-400: var(--color-slate-400);
+  --color-gray-500: var(--color-slate-500);
+  --color-gray-600: var(--color-slate-600);
+  --color-gray-700: var(--color-slate-700);
+  --color-gray-800: var(--color-slate-800);
+  --color-gray-900: var(--color-slate-900);
+
+  /* use for light and dark gray text */
+  --color-gray-dark: var(--color-gray-700);
+  --color-gray-light: var(--color-gray-300);
+
+  /* use for light and dark default text */
+  --color-white: #ffffff;
+  --color-black: var(--color-slate-950);
 }
 
-/* 
- * Tailwind CSS theme variables.
- * @see https://tailwindcss.com/docs/theme
- */
-@theme inline {
-  --font-sans:
-    "InterVariable", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-sans--font-feature-settings:
-    "liga" 1, "calt" 1, "ss01" 1, "cv05" 1, "cv11" 1;
-
-  --color-base: var(--catpuccin-base);
-  --color-mantle: var(--catpuccin-mantle);
-  --color-crust: var(--catpuccin-crust);
-  --color-surface-0: var(--catpuccin-surface-0);
-  --color-surface-1: var(--catpuccin-surface-1);
-  --color-surface-2: var(--catpuccin-surface-2);
-  --color-text: var(--catpuccin-text);
-  --color-inverted-text: var(--catpuccin-base);
-  --color-subtext-0: var(--catpuccin-subtext-0);
-  --color-subtext-1: var(--catpuccin-subtext-1);
-
-  --color-rosewater: var(--catpuccin-rosewater);
-  --color-flamingo: var(--catpuccin-flamingo);
-  --color-pink: var(--catpuccin-pink);
-  --color-mauve: var(--catpuccin-mauve);
-  --color-red: var(--catpuccin-red);
-  --color-maroon: var(--catpuccin-maroon);
-  --color-peach: var(--catpuccin-peach);
-  --color-yellow: var(--catpuccin-yellow);
-  --color-green: var(--catpuccin-green);
-  --color-teal: var(--catpuccin-teal);
-  --color-sky: var(--catpuccin-sky);
-  --color-sapphire: var(--catpuccin-sapphire);
-  --color-blue: var(--catpuccin-blue);
-  --color-lavender: var(--catpuccin-lavender);
-
-  --color-drupal-blue: #009cde;
-  --color-drupal-dark-blue: #006aa9;
-  --color-drupal-navy: #12285f;
-  --color-drupal-dark-navy: #091942;
-  --color-drupal-light-blue: #ccedf9;
-  --color-drupal-black: #000;
-  --color-drupal-white: #fff;
-  --color-drupal-purple: #ccbaf4;
-  --color-drupal-yellow: #ffc423;
-  --color-drupal-red: #f46351;
-  --color-drupal-dark-red: #c63c00;
-  --color-drupal-green: #397618;
-  --color-drupal-gray-darkest: #1f2420;
-  --color-drupal-gray-darker: #323946;
-  --color-drupal-gray-dark: #4f5661;
-  --color-drupal-gray-default: #6d7583;
-  --color-drupal-gray-mild: #a2acbe;
-  --color-drupal-gray-milder: #cfd4dd;
-  --color-drupal-gray-mildest: #f8f9fc;
-  --color-drupal-gray-disabled: #e7ebf3;
+html {
+  @apply text-slate-950;
 }

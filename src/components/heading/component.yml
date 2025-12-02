@@ -2,16 +2,57 @@ name: Heading
 machineName: heading
 status: true
 required:
-  - text
+  - textColor
+  - headingElement
+  - headingSize
+  - layout
 props:
   properties:
-    text:
-      title: Text
+    preHeading:
+      title: Pre Heading
+      type: string
+    heading:
+      title: Heading
       type: string
       examples:
-        - Believe it or not, this copy was written by a human.
-        - Our team is here to help your AI agents look good.
-        - Our pricing is based on the value you get.
+        - Enter a heading...
+    textColor:
+      title: Text Color
+      type: string
+      examples:
+        - Dark
+      enum:
+        - Dark
+        - Light
+    headingElement:
+      title: Heading Element
+      type: string
+      examples:
+        - h2
+      enum:
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+    headingSize:
+      title: Heading Size
+      type: string
+      examples:
+        - Medium
+      enum:
+        - Small
+        - Medium
+        - Large
+        - Extra Large
+    layout:
+      title: Layout
+      type: string
+      examples:
+        - Left aligned
+      enum:
+        - Left aligned
+        - Center aligned
+        - Right aligned
 slots: []
-importedJsComponents: []
-dataDependencies: []

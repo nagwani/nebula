@@ -1,42 +1,86 @@
+import { useEffect, useRef, useState } from 'react';
 import { cn } from "@/lib/utils";
-import { cva } from "class-variance-authority";
+import SearchButton from '@/components/search_button';
+import { cva } from 'class-variance-authority';
 
-const Header = ({ branding, navigation, backgroundColor }) => {
-  const headerVariants = cva("", {
+const headerVariants = cva(
+  cn(
+    'gap-4 px-8 py-3 relative grid w-full justify-center leading-[normal]',
+    'border-b border-solid border-gray-200',
+    'bg-[var(--color-bg)]',
+  ),
+  {
     variants: {
-      backgroundColor: {
-        base: "bg-base",
-        mantle: "bg-mantle",
-        crust: "bg-crust",
-      },
-    },
-    defaultVariants: {
-      backgroundColor: "base",
-    },
-  });
+      displaySearchForm: {
+        false: 'grid-cols-2',
+        true: 'grid-cols-2 md:grid-cols-[1fr_auto_1fr]',
+      }
+    }
+  }
+)
+
+const Header = ({
+  backgroundColor = '#ffffff',
+  className,
+  logo,
+  menu,
+  displaySearchForm
+}) => {
+  const [height, setHeight] = useState(0)
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (ref.current) {
+        setHeight(ref.current.offsetHeight);
+      }
+    };
+
+    updateHeight();
+
+    if (!ref.current) return;
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateHeight();
+    });
+
+    resizeObserver.observe(ref.current);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   return (
     <header
-      className={headerVariants({
-        backgroundColor,
-      })}
+      className={cn(
+        headerVariants({ displaySearchForm }),
+        className
+      )}
+      ref={ref}
+      style={{
+        '--color-bg': backgroundColor,
+      }}
     >
-      <div className="mx-auto flex h-24 max-w-screen-xl min-w-sm items-center justify-between gap-x-12 px-4 sm:px-12 md:h-32 lg:gap-x-16 lg:px-16">
-        <div
-          className={cn(
-            "h-12 flex-shrink-0 items-center justify-start md:h-16",
-            branding?.props?.value?.includes(
-              "canvas--slot-empty-placeholder",
-            ) && "min-w-32",
-          )}
-        >
-          {branding}
-        </div>
-        <div className="flex h-12 flex-grow items-center justify-end md:h-16">
-          {navigation}
-        </div>
-      </div>
-    </header>
-  );
-};
+      {/* Logo - always first */}
+      <div className="my-1 max-h-8 md:my-3 justify-self-start min-w-[100px]">{logo}</div>
 
-export default Header;
+      {/* Search and Menu container on mobile, Menu only on desktop */}
+      <div className="justify-self-end md:justify-self-center md:content-center md:px-6 md:py-2 w-full min-w-[200px] md:min-w-[300px] flex items-center justify-end md:justify-center gap-2">
+        {displaySearchForm && (
+          <div className="md:hidden">
+            <SearchButton positionTop={height} />
+          </div>
+        )}
+        <div className="md:w-full">{menu}</div>
+      </div>
+
+      {/* Search - desktop only (third position) */}
+      {displaySearchForm && (
+        <div className="hidden md:block content-center min-w-[50px] text-right">
+          <SearchButton positionTop={height} />
+        </div>
+      )}
+    </header>
+  )
+}
+
+export default Header

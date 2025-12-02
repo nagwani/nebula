@@ -1,12 +1,13 @@
 import Logo from "@/components/logo";
-import Section from "@/components/section";
 
 export default {
   title: "Components/Logo",
   component: Logo,
 };
 
-const Decorator = ({ children }) => <Section content={children} />;
+const Decorator = ({ children }) => (
+  <div className="bg-white p-4">{children}</div>
+);
 
 export const Default = {
   decorators: [
@@ -18,15 +19,12 @@ export const Default = {
   ],
 };
 
-export const NoLink = {
-  args: {
-    linkToFrontPage: false,
-  },
+export const OnDarkBackground = {
   decorators: [
     (Story) => (
-      <Decorator>
+      <div className="bg-slate-800 p-4">
         <Story />
-      </Decorator>
+      </div>
     ),
   ],
 };

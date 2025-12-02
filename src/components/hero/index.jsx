@@ -1,70 +1,48 @@
-import FormattedText from "@/lib/FormattedText";
 import { cn } from "@/lib/utils";
-import { cva } from "class-variance-authority";
+import { cva } from 'class-variance-authority';
+import TwoColumnText from '@/components/two_column_text'
+
+const backgroundVariants = cva('align-center px-8 py-16 h-full w-full', {
+  variants: {
+    darkenImage: {
+      false: null,
+      true: 'backdrop-brightness-75',
+    },
+  },
+})
 
 const Hero = ({
-  title,
-  description,
-  buttonLabel,
-  buttonLink,
-  image,
-  backgroundColor,
+  layout,
+  preHeading,
+  heading,
+  headingElement,
+  headingSize = 'Large',
+  text,
+  textColor = 'Dark',
+  buttons,
+  backgroundImage,
+  darkenImage,
 }) => {
-  const heroVariants = cva("", {
-    variants: {
-      backgroundColor: {
-        base: "bg-base",
-        mantle: "bg-mantle",
-        crust: "bg-crust",
-      },
-    },
-    defaultVariants: {
-      backgroundColor: "base",
-    },
-  });
   return (
-    <section
-      className={heroVariants({
-        backgroundColor,
-      })}
+    <div
+      className="flex min-h-[672px] w-full justify-start bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${backgroundImage.src})` }}
     >
-      <div className="mx-auto max-w-screen-xl sm:grid sm:grid-cols-2 sm:items-center">
-        <div className="p-8 md:p-12 lg:px-16 lg:py-24">
-          <div className="flex max-w-xl flex-col gap-8">
-            <h2 className="tracking-relaxed bg-gradient-to-r from-peach to-mauve bg-clip-text text-2xl font-extrabold text-balance text-transparent md:text-4xl">
-              {title}
-            </h2>
-            <FormattedText
-              as="p"
-              className="leading-relaxed text-balance text-text"
-            >
-              {description}
-            </FormattedText>
-            <div>
-              <a
-                href={buttonLink}
-                className={cn(
-                  "inline-block rounded-sm bg-mauve px-12 py-3 text-sm font-medium text-inverted-text transition hover:bg-mauve/75",
-                  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red",
-                )}
-              >
-                {buttonLabel}
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="h-full w-full overflow-hidden rounded-3xl py-6 md:py-8 lg:py-14">
-          <img
-            alt={image.alt}
-            src={image.src}
-            width={image.width}
-            height={image.height}
-            className="h-full w-full object-cover object-right shadow-lg sm:rounded-l-4xl xl:rounded-r-xl"
-          />
-        </div>
+      <div className={backgroundVariants({ darkenImage })}>
+        <TwoColumnText
+          heading={heading}
+          headingElement={headingElement}
+          headingSize={headingSize}
+          layout={layout}
+          preHeading={preHeading}
+          text={text}
+          textColor={textColor}
+          buttons={buttons}
+          textShadow="Medium"
+        />
       </div>
-    </section>
-  );
-};
+    </div>
+  )
+}
 
-export default Hero;
+export default Hero

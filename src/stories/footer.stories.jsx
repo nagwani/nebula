@@ -1,26 +1,34 @@
 import Footer from "@/components/footer";
-import Logo from "@/components/logo";
 
 import { getComponentExamples } from "./lib/get-examples";
 
-const exampleFooterArgs = await getComponentExamples("footer");
+const exampleArgs = await getComponentExamples("footer");
 
 export default {
   title: "Components/Footer",
   component: Footer,
-  argTypes: {
-    backgroundColor: {
-      control: "select",
-      options: ["base", "mantle", "crust"],
-    },
-  },
 };
 
 export const Default = {
-  args: {
-    branding: <Logo />,
-    ...exampleFooterArgs[0],
-  },
+  args: exampleArgs[0],
 };
 
-export const Empty = {};
+export const WithLinks = {
+  args: {
+    text: (
+      <>
+        <a href="#" className="text-gray-500 hover:text-gray-700">
+          Privacy Policy
+        </a>
+        <span className="text-gray-300">|</span>
+        <a href="#" className="text-gray-500 hover:text-gray-700">
+          Terms of Service
+        </a>
+        <span className="text-gray-300">|</span>
+        <a href="#" className="text-gray-500 hover:text-gray-700">
+          Contact Us
+        </a>
+      </>
+    ),
+  },
+};

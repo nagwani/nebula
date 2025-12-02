@@ -1,56 +1,103 @@
+import { cn } from "@/lib/utils";
 import FormattedText from "@/lib/FormattedText";
 import { cva } from "class-variance-authority";
+import Heading from "@/components/heading";
+import Button from "@/components/button";
+import Image from "next-image-standalone";
 
-const Card = ({ title, description, iconNameFromLucide, iconColor }) => {
-  const cardVariants = cva("size-8", {
+const passthroughLoader = ({ src }) => src;
+
+const cardVariants = cva(
+  'max-w-md gap-4 rounded-2xl pb-6 flex w-full flex-col items-center leading-[normal]',
+  {
     variants: {
-      iconColor: {
-        text: "bg-text",
-        rosewater: "bg-rosewater",
-        flamingo: "bg-flamingo",
-        pink: "bg-pink",
-        mauve: "bg-mauve",
-        red: "bg-red",
-        maroon: "bg-maroon",
-        peach: "bg-peach",
-        yellow: "bg-yellow",
-        green: "bg-green",
-        teal: "bg-teal",
-        sky: "bg-sky",
-        sapphire: "bg-sapphire",
-        blue: "bg-blue",
-        lavender: "bg-lavender",
+      layout: {
+        'Left aligned': 'items-start text-left',
+        'Center aligned': 'items-center text-center',
+        'Right aligned': 'items-end text-right',
+      },
+      textColor: {
+        Default: null,
+        Dark: 'text-primary-dark',
+        Light: 'text-white',
+      },
+      image: {
+        true: null,
+        false: 'pt-8',
       },
     },
     defaultVariants: {
-      iconColor: "teal",
+      textColor: 'Default',
     },
-  });
-  return (
-    <div className="flex flex-col gap-3 rounded-lg bg-surface-0 p-6">
-      {iconNameFromLucide && (
-        <div
-          className={cardVariants({ iconColor })}
-          style={{
-            maskImage: `url(https://esm.sh/lucide-static@0.544.0/icons/${iconNameFromLucide}.svg)`,
-            maskSize: "contain",
-            maskRepeat: "no-repeat",
-            maskPosition: "center",
-            WebkitMaskImage: `url(https://esm.sh/lucide-static@0.544.0/icons/${iconNameFromLucide}.svg)`,
-            WebkitMaskSize: "contain",
-            WebkitMaskRepeat: "no-repeat",
-            WebkitMaskPosition: "center",
-          }}
-        />
-      )}
-      {title && <h3 className="text-lg font-semibold text-text">{title}</h3>}
-      {description && (
-        <FormattedText as="p" className="text-subtext-0">
-          {description}
-        </FormattedText>
-      )}
-    </div>
-  );
-};
+  }
+)
 
-export default Card;
+const Card = ({
+  backgroundColor = '#ffffff',
+  backgroundColorOnHover = '#E2E8F0',
+  className,
+  image,
+  heading,
+  headingElement = 'h2',
+  layout = 'Left aligned',
+  link,
+  linkLabel,
+  linkVariant = 'link',
+  text,
+  textColor,
+}) => {
+  const cardBackgroundClassName = `card-${backgroundColor.substring(1)}`
+  const cardBackgroundClassNameOnHover = `card-${backgroundColorOnHover.substring(1)}`
+  const { src, alt, width, height } = image;
+
+  return (
+    <>
+      <style>
+        {`
+          .${cardBackgroundClassName} {
+            background-color: ${backgroundColor};
+          }
+          .${cardBackgroundClassNameOnHover}:hover {
+            background-color: ${backgroundColorOnHover};
+          }
+        `}
+      </style>
+      <div
+        className={cn(
+          cardVariants({ layout, textColor, image: !!image }),
+          cardBackgroundClassName,
+          cardBackgroundClassNameOnHover,
+          className
+        )}
+      >
+        {image && (
+          <Image
+            {...{ src, alt, width, height }}
+            loader={passthroughLoader}
+            className="w-full rounded-2xl object-cover object-center"
+          />
+        )}
+        <div className="px-6 pt-2">
+          {heading && (
+            <Heading
+              className="mb-2"
+              heading={heading}
+              headingElement={headingElement}
+              headingSize="Small"
+              layout={layout}
+              textColor={textColor}
+            />
+          )}
+          {text && <FormattedText className="mb-4 leading-6">{text}</FormattedText>}
+          {link && linkLabel && (
+            <Button link={link} variant={linkVariant}>
+              {linkLabel}
+            </Button>
+          )}
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default Card
