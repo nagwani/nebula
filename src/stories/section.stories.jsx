@@ -6,7 +6,7 @@ export default {
   argTypes: {
     width: {
       control: "select",
-      options: ["Normal", "Wide"],
+      options: ["normal", "wide"],
     },
   },
 };
@@ -19,14 +19,14 @@ const SampleContent = () => (
 
 export const Default = {
   args: {
-    width: "Normal",
+    width: "normal",
     content: <SampleContent />,
   },
 };
 
 export const Wide = {
   args: {
-    width: "Wide",
+    width: "wide",
     content: <SampleContent />,
   },
 };

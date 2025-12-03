@@ -20,10 +20,13 @@ props:
       title: Layout
       type: string
       examples:
-        - Left aligned
+        - left_aligned
       enum:
-        - Left aligned
-        - Centered
+        - left_aligned
+        - centered
+      meta:enum:
+        left_aligned: Left aligned
+        centered: Centered
     preHeading:
       title: Pre Heading
       type: string
@@ -41,16 +44,28 @@ props:
         - h4
         - h5
         - h6
+      meta:enum:
+        h1: h1
+        h2: h2
+        h3: h3
+        h4: h4
+        h5: h5
+        h6: h6
     headingSize:
       title: Heading Size
       type: string
       examples:
-        - Extra Large
+        - extra_large
       enum:
-        - Extra Large
-        - Large
-        - Medium
-        - Small
+        - extra_large
+        - large
+        - medium
+        - small
+      meta:enum:
+        extra_large: Extra Large
+        large: Large
+        medium: Medium
+        small: Small
     heading:
       title: Heading
       type: string
@@ -69,10 +84,13 @@ props:
       title: Text Color
       type: string
       examples:
-        - Dark
+        - dark
       enum:
-        - Dark
-        - Light
+        - dark
+        - light
+      meta:enum:
+        dark: Dark
+        light: Light
 slots:
   buttons:
     title: Buttons

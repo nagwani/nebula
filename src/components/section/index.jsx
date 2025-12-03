@@ -3,8 +3,8 @@ import { cva } from "class-variance-authority";
 const sectionVariants = cva("m-auto my-8 px-4", {
   variants: {
     width: {
-      Normal: "max-w-2xl",
-      Wide: "max-w-4xl",
+      normal: "max-w-2xl",
+      wide: "max-w-4xl",
     },
   },
 });

@@ -28,7 +28,7 @@ const SearchOverlay = ({ positionTop }) => {
       className="absolute right-0 left-0 bg-gray-100"
       style={{ top: `${positionTop}px` }}
     >
-      <Section content={<SearchForm />} width="Normal" />
+      <Section content={<SearchForm />} width="normal" />
     </div>
   );
 };

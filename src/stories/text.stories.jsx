@@ -2,8 +2,8 @@ import Text from "@/components/text";
 
 const exampleArgs = {
   text: "Enter some text...",
-  textSize: "Normal",
-  textColor: "Dark",
+  textSize: "normal",
+  textColor: "dark",
 };
 
 export default {
@@ -12,11 +12,11 @@ export default {
   argTypes: {
     textSize: {
       control: "select",
-      options: ["Extra Small", "Small", "Normal", "Large", "Extra Large"],
+      options: ["extra_small", "small", "normal", "large", "extra_large"],
     },
     textColor: {
       control: "select",
-      options: ["Dark", "Light"],
+      options: ["dark", "light"],
     },
   },
 };
@@ -28,42 +28,42 @@ export const Default = {
 export const ExtraSmall = {
   args: {
     ...exampleArgs,
-    textSize: "Extra Small",
+    textSize: "extra_small",
   },
 };
 
 export const Small = {
   args: {
     ...exampleArgs,
-    textSize: "Small",
+    textSize: "small",
   },
 };
 
 export const Normal = {
   args: {
     ...exampleArgs,
-    textSize: "Normal",
+    textSize: "normal",
   },
 };
 
 export const Large = {
   args: {
     ...exampleArgs,
-    textSize: "Large",
+    textSize: "large",
   },
 };
 
 export const ExtraLarge = {
   args: {
     ...exampleArgs,
-    textSize: "Extra Large",
+    textSize: "extra_large",
   },
 };
 
 export const LightOnDark = {
   args: {
     ...exampleArgs,
-    textColor: "Light",
+    textColor: "light",
   },
   decorators: [
     (Story) => (
@@ -77,7 +77,7 @@ export const LightOnDark = {
 export const WithHTML = {
   args: {
     text: "<p>This is a <strong>bold</strong> and <em>italic</em> text with a <a href='#'>link</a>.</p>",
-    textSize: "Normal",
-    textColor: "Dark",
+    textSize: "normal",
+    textColor: "dark",
   },
 };

@@ -15,15 +15,15 @@ const gridVariants = cva("grid w-full", {
       "25-25-25-25": "sm:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr_1fr]",
     },
     gap: {
-      "Extra Small": "gap-1",
-      Small: "gap-2",
-      Medium: "gap-4",
-      Large: "gap-6",
-      "Extra Large": "gap-8",
+      extra_small: "gap-1",
+      small: "gap-2",
+      medium: "gap-4",
+      large: "gap-6",
+      extra_large: "gap-8",
     },
   },
   defaultVariants: {
-    gap: "Medium",
+    gap: "medium",
     layout: "33-33-33",
   },
 });

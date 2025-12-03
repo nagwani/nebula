@@ -5,20 +5,20 @@ import { cva } from "class-variance-authority";
 const textVariants = cva("my-8", {
   variants: {
     textColor: {
-      Dark: "!text-black",
-      Light: "!text-white",
+      dark: "!text-black",
+      light: "!text-white",
     },
     textSize: {
-      "Extra Small": "text-xs",
-      Small: "text-sm",
-      Normal: "text-base/6",
-      Large: "text-lg/8",
-      "Extra Large": "text-xl/8",
+      extra_small: "text-xs",
+      small: "text-sm",
+      normal: "text-base/6",
+      large: "text-lg/8",
+      extra_large: "text-xl/8",
     },
     textShadow: {
-      Light: "text-shadow-sm",
-      Medium: "text-shadow-md",
-      Heavy: "text-shadow-lg",
+      light: "text-shadow-sm",
+      medium: "text-shadow-md",
+      heavy: "text-shadow-lg",
     },
   },
 });

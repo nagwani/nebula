@@ -6,12 +6,12 @@ import ResponsiveImage from "next-image-standalone";
 const heroVariants = cva("mx-auto flex w-full max-w-[1360px] flex-col gap-8", {
   variants: {
     layout: {
-      "Left Aligned": "items-start justify-between md:flex-row",
-      Centered: "flex-col items-center justify-center text-center",
+      left_aligned: "items-start justify-between md:flex-row",
+      centered: "flex-col items-center justify-center text-center",
     },
   },
   defaultVariants: {
-    layout: "leftAligned",
+    layout: "left_aligned",
   },
 });
 
@@ -20,10 +20,10 @@ const TwoColumnText = ({
   preHeading,
   heading,
   headingElement,
-  headingSize = "Large",
+  headingSize = "large",
   text,
   buttons,
-  textColor = "Dark",
+  textColor = "dark",
   image,
   rightColumn,
   textShadow,
@@ -50,7 +50,7 @@ const TwoColumnText = ({
                 className="mb-4"
                 text={text}
                 textColor={textColor}
-                textSize="Large"
+                textSize="large"
                 textShadow={textShadow}
               />
             )}

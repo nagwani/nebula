@@ -17,19 +17,28 @@ props:
       title: Text Size
       type: string
       examples:
-        - Normal
+        - normal
       enum:
-        - Extra Small
-        - Small
-        - Normal
-        - Large
-        - Extra Large
+        - extra_small
+        - small
+        - normal
+        - large
+        - extra_large
+      meta:enum:
+        extra_small: Extra Small
+        small: Small
+        normal: Normal
+        large: Large
+        extra_large: Extra Large
     textColor:
       title: Text Color
       type: string
       examples:
-        - Dark
+        - dark
       enum:
-        - Dark
-        - Light
+        - dark
+        - light
+      meta:enum:
+        dark: Dark
+        light: Light
 slots: []

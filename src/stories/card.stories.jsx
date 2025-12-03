@@ -7,12 +7,12 @@ const exampleArgs = {
     width: 800,
     height: 600,
   },
-  layout: "Left aligned",
+  layout: "left_aligned",
   heading: "Feature or benefit",
   headingElement: "h3",
   text: "Help people become familiar with the organization and its offerings, creating a sense of connection and trust.",
   link: "/",
-  linkVariant: "Link",
+  linkVariant: "link",
 };
 
 export default {
@@ -21,11 +21,11 @@ export default {
   argTypes: {
     layout: {
       control: "select",
-      options: ["Left aligned", "Center aligned", "Right aligned"],
+      options: ["left_aligned", "center_aligned", "right_aligned"],
     },
     textColor: {
       control: "select",
-      options: ["Default", "Dark", "Light"],
+      options: ["Default", "dark", "light"],
     },
     headingElement: {
       control: "select",
@@ -33,7 +33,7 @@ export default {
     },
     linkVariant: {
       control: "select",
-      options: ["Solid", "Outline Dark", "Link", "Link Underline"],
+      options: ["solid", "outline_dark", "link", "link_underline"],
     },
     backgroundColor: {
       control: "color",
@@ -53,14 +53,14 @@ export const WithLink = {
     ...exampleArgs,
     link: "/learn-more",
     linkLabel: "Learn more",
-    linkVariant: "Link",
+    linkVariant: "link",
   },
 };
 
 export const CenterAligned = {
   args: {
     ...exampleArgs,
-    layout: "Center aligned",
+    layout: "center_aligned",
   },
 };
 
@@ -77,6 +77,6 @@ export const WithSolidButton = {
     ...exampleArgs,
     link: "/get-started",
     linkLabel: "Get Started",
-    linkVariant: "Solid",
+    linkVariant: "solid",
   },
 };

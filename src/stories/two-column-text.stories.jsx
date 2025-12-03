@@ -8,13 +8,13 @@ const exampleArgs = {
     width: 800,
     height: 600,
   },
-  layout: "Left Aligned",
+  layout: "left_aligned",
   preHeading: "Mission",
   heading: "This space deserves a hero.",
   headingElement: "h2",
-  headingSize: "Large",
+  headingSize: "large",
   text: "This is a space to welcome visitors to the site. Grab their attention with copy that clearly states what the site is about.",
-  textColor: "Dark",
+  textColor: "dark",
 };
 
 export default {
@@ -23,11 +23,11 @@ export default {
   argTypes: {
     layout: {
       control: "select",
-      options: ["Left Aligned", "Centered"],
+      options: ["left_aligned", "centered"],
     },
     textColor: {
       control: "select",
-      options: ["Dark", "Light"],
+      options: ["dark", "light"],
     },
     headingElement: {
       control: "select",
@@ -35,15 +35,15 @@ export default {
     },
     headingSize: {
       control: "select",
-      options: ["Extra Large", "Large", "Medium", "Small"],
+      options: ["extra_large", "large", "medium", "small"],
     },
   },
 };
 
 const SampleButtons = (
   <>
-    <Button text="Primary Action" variant="Solid" link="#" />
-    <Button text="Secondary" variant="Outline Dark" link="#" />
+    <Button text="Primary Action" variant="solid" link="#" />
+    <Button text="Secondary" variant="outline_dark" link="#" />
   </>
 );
 
@@ -57,7 +57,7 @@ export const Default = {
 export const Centered = {
   args: {
     ...exampleArgs,
-    layout: "Centered",
+    layout: "centered",
     buttons: SampleButtons,
   },
 };
@@ -75,11 +75,11 @@ export const WithPreHeading = {
 export const LightOnDark = {
   args: {
     ...exampleArgs,
-    textColor: "Light",
+    textColor: "light",
     buttons: (
       <>
-        <Button text="Get Started" variant="Solid" link="#" />
-        <Button text="Learn More" variant="Outline Light" link="#" />
+        <Button text="Get Started" variant="solid" link="#" />
+        <Button text="Learn More" variant="outline_light" link="#" />
       </>
     ),
   },
@@ -94,12 +94,12 @@ export const LightOnDark = {
 
 export const WithoutImage = {
   args: {
-    layout: "Left Aligned",
+    layout: "left_aligned",
     heading: "Simple and Clean",
     headingElement: "h2",
-    headingSize: "Large",
+    headingSize: "large",
     text: "Sometimes you just need text without an image. This layout works great for that.",
-    textColor: "Dark",
+    textColor: "dark",
     buttons: SampleButtons,
   },
 };

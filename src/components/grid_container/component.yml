@@ -34,19 +34,19 @@ props:
       title: Gap
       type: string
       examples:
-        - Medium
+        - medium
       enum:
-        - Extra Small
-        - Small
-        - Medium
-        - Large
-        - Extra Large
+        - extra_small
+        - small
+        - medium
+        - large
+        - extra_large
       meta:enum:
-        Extra Small: Extra Small
-        Small: Small
-        Medium: Medium
-        Large: Large
-        Extra Large: Extra Large
+        extra_small: Extra Small
+        small: Small
+        medium: Medium
+        large: Large
+        extra_large: Extra Large
 slots:
   content:
     title: Content

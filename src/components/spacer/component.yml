@@ -9,10 +9,15 @@ props:
       title: Height
       type: string
       examples:
-        - Medium
+        - medium
       enum:
-        - Small
-        - Medium
-        - Large
-        - Extra Large
+        - small
+        - medium
+        - large
+        - extra_large
+      meta:enum:
+        small: Small
+        medium: Medium
+        large: Large
+        extra_large: Extra Large
 slots: []

@@ -7,7 +7,7 @@ const ThreeColumnCardContainer = ({
   headingPosition,
   heading,
   headingLevel,
-  headingSize = "Large",
+  headingSize = "large",
   preHeading,
   textColor,
   layout,

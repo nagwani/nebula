@@ -20,41 +20,41 @@ props:
       title: Heading Size
       type: string
       examples:
-        - Large
+        - large
       enum:
-        - Extra Large
-        - Large
-        - Medium
-        - Small
+        - extra_large
+        - large
+        - medium
+        - small
       meta:enum:
-        Extra Large: Extra Large
-        Large: Large
-        Medium: Medium
-        Small: Small
+        extra_large: Extra Large
+        large: Large
+        medium: Medium
+        small: Small
     textColor:
       title: Text Color
       type: string
       examples:
-        - Dark
+        - dark
       enum:
-        - Dark
-        - Light
+        - dark
+        - light
       meta:enum:
-        Dark: Dark
-        Light: Light
+        dark: Dark
+        light: Light
     headingPosition:
       title: Heading Position
       type: string
       examples:
-        - Center aligned
+        - center_aligned
       enum:
-        - Left aligned
-        - Center aligned
-        - Right aligned
+        - left_aligned
+        - center_aligned
+        - right_aligned
       meta:enum:
-        Left aligned: Left aligned
-        Center aligned: Center aligned
-        Right aligned: Right aligned
+        left_aligned: Left aligned
+        center_aligned: Center aligned
+        right_aligned: Right aligned
     headingLevel:
       title: Heading Level
       type: string

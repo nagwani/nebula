@@ -9,10 +9,13 @@ props:
       title: Width
       type: string
       examples:
-        - Normal
+        - normal
       enum:
-        - Normal
-        - Wide
+        - normal
+        - wide
+      meta:enum:
+        normal: Normal
+        wide: Wide
 slots:
   content:
     title: Content

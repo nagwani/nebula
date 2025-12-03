@@ -8,13 +8,13 @@ const exampleArgs = {
     width: 1920,
     height: 1080,
   },
-  layout: "Left aligned",
+  layout: "left_aligned",
   preHeading: "Mission",
   headingElement: "h2",
-  headingSize: "Extra Large",
+  headingSize: "extra_large",
   heading: "This space deserves a hero.",
   text: "This is a space to welcome visitors to the site. Grab their attention with copy that clearly states what the site is about.",
-  textColor: "Dark",
+  textColor: "dark",
 };
 
 export default {
@@ -26,15 +26,15 @@ export default {
   argTypes: {
     layout: {
       control: "select",
-      options: ["Left aligned", "Centered"],
+      options: ["left_aligned", "centered"],
     },
     textColor: {
       control: "select",
-      options: ["Dark", "Light"],
+      options: ["dark", "light"],
     },
     headingSize: {
       control: "select",
-      options: ["Extra Large", "Large", "Medium", "Small"],
+      options: ["extra_large", "large", "medium", "small"],
     },
     headingElement: {
       control: "select",
@@ -48,15 +48,15 @@ export default {
 
 const SampleButtons = (
   <>
-    <Button text="Get Started" variant="Solid" link="#" />
-    <Button text="Learn More" variant="Outline Dark" link="#" />
+    <Button text="Get Started" variant="solid" link="#" />
+    <Button text="Learn More" variant="outline_dark" link="#" />
   </>
 );
 
 const LightButtons = (
   <>
-    <Button text="Get Started" variant="Solid" link="#" />
-    <Button text="Learn More" variant="Outline Light" link="#" />
+    <Button text="Get Started" variant="solid" link="#" />
+    <Button text="Learn More" variant="outline_light" link="#" />
   </>
 );
 
@@ -70,7 +70,7 @@ export const Default = {
 export const Centered = {
   args: {
     ...exampleArgs,
-    layout: "Centered",
+    layout: "centered",
     buttons: SampleButtons,
   },
 };
@@ -78,7 +78,7 @@ export const Centered = {
 export const LightTextOnDarkImage = {
   args: {
     ...exampleArgs,
-    textColor: "Light",
+    textColor: "light",
     darkenImage: true,
     backgroundImage: {
       src: "https://placehold.co/1920x1080/1e293b/1e293b@2x.png",
@@ -93,7 +93,7 @@ export const LightTextOnDarkImage = {
 export const ExtraLargeHeading = {
   args: {
     ...exampleArgs,
-    headingSize: "Extra Large",
+    headingSize: "extra_large",
     heading: "Make a Bold Statement",
     buttons: SampleButtons,
   },

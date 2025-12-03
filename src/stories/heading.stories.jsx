@@ -2,10 +2,10 @@ import Heading from "@/components/heading";
 
 const exampleArgs = {
   heading: "Enter a heading...",
-  textColor: "Dark",
+  textColor: "dark",
   headingElement: "h2",
-  headingSize: "Medium",
-  layout: "Left aligned",
+  headingSize: "medium",
+  layout: "left_aligned",
 };
 
 export default {
@@ -14,7 +14,7 @@ export default {
   argTypes: {
     textColor: {
       control: "select",
-      options: ["Dark", "Light"],
+      options: ["dark", "light"],
     },
     headingElement: {
       control: "select",
@@ -22,11 +22,11 @@ export default {
     },
     headingSize: {
       control: "select",
-      options: ["Small", "Medium", "Large", "Extra Large"],
+      options: ["small", "medium", "large", "extra_large"],
     },
     layout: {
       control: "select",
-      options: ["Left aligned", "Center aligned", "Right aligned"],
+      options: ["left_aligned", "center_aligned", "right_aligned"],
     },
   },
 };
@@ -38,42 +38,42 @@ export const Default = {
 export const ExtraLarge = {
   args: {
     ...exampleArgs,
-    headingSize: "Extra Large",
+    headingSize: "extra_large",
   },
 };
 
 export const Large = {
   args: {
     ...exampleArgs,
-    headingSize: "Large",
+    headingSize: "large",
   },
 };
 
 export const Medium = {
   args: {
     ...exampleArgs,
-    headingSize: "Medium",
+    headingSize: "medium",
   },
 };
 
 export const Small = {
   args: {
     ...exampleArgs,
-    headingSize: "Small",
+    headingSize: "small",
   },
 };
 
 export const CenterAligned = {
   args: {
     ...exampleArgs,
-    layout: "Center aligned",
+    layout: "center_aligned",
   },
 };
 
 export const RightAligned = {
   args: {
     ...exampleArgs,
-    layout: "Right aligned",
+    layout: "right_aligned",
   },
 };
 
@@ -88,7 +88,7 @@ export const WithPreHeading = {
 export const LightOnDark = {
   args: {
     ...exampleArgs,
-    textColor: "Light",
+    textColor: "light",
   },
   decorators: [
     (Story) => (

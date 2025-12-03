@@ -6,7 +6,7 @@ export default {
   argTypes: {
     height: {
       control: "select",
-      options: ["Small", "Medium", "Large", "Extra Large"],
+      options: ["small", "medium", "large", "extra_large"],
     },
   },
   decorators: [
@@ -24,24 +24,24 @@ export default {
 
 export const Default = {
   args: {
-    height: "Medium",
+    height: "medium",
   },
 };
 
 export const Small = {
   args: {
-    height: "Small",
+    height: "small",
   },
 };
 
 export const Large = {
   args: {
-    height: "Large",
+    height: "large",
   },
 };
 
 export const ExtraLarge = {
   args: {
-    height: "Extra Large",
+    height: "extra_large",
   },
 };

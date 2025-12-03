@@ -20,7 +20,7 @@ export default {
     },
     gap: {
       control: "select",
-      options: ["Extra Small", "Small", "Medium", "Large", "Extra Large"],
+      options: ["extra_small", "small", "medium", "large", "extra_large"],
     },
   },
 };
@@ -58,7 +58,7 @@ const FourColumnContent = (
 export const Default = {
   args: {
     layout: "33-33-33",
-    gap: "Medium",
+    gap: "medium",
     content: ThreeColumnContent,
   },
 };
@@ -66,7 +66,7 @@ export const Default = {
 export const TwoColumnsEqual = {
   args: {
     layout: "50-50",
-    gap: "Medium",
+    gap: "medium",
     content: TwoColumnContent,
   },
 };
@@ -74,7 +74,7 @@ export const TwoColumnsEqual = {
 export const TwoColumnsWideLeft = {
   args: {
     layout: "75-25",
-    gap: "Medium",
+    gap: "medium",
     content: TwoColumnContent,
   },
 };
@@ -82,7 +82,7 @@ export const TwoColumnsWideLeft = {
 export const TwoColumnsWideRight = {
   args: {
     layout: "25-75",
-    gap: "Medium",
+    gap: "medium",
     content: TwoColumnContent,
   },
 };
@@ -90,7 +90,7 @@ export const TwoColumnsWideRight = {
 export const FourColumnsEqual = {
   args: {
     layout: "25-25-25-25",
-    gap: "Medium",
+    gap: "medium",
     content: FourColumnContent,
   },
 };
@@ -98,7 +98,7 @@ export const FourColumnsEqual = {
 export const LargeGap = {
   args: {
     layout: "33-33-33",
-    gap: "Extra Large",
+    gap: "extra_large",
     content: ThreeColumnContent,
   },
 };
@@ -106,7 +106,7 @@ export const LargeGap = {
 export const SmallGap = {
   args: {
     layout: "33-33-33",
-    gap: "Small",
+    gap: "small",
     content: ThreeColumnContent,
   },
 };

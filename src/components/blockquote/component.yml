@@ -16,10 +16,13 @@ props:
       title: Text Color
       type: string
       examples:
-        - Dark
+        - dark
       enum:
-        - Dark
-        - Light
+        - dark
+        - light
+      meta:enum:
+        dark: Dark
+        light: Light
     name:
       title: Name
       type: string

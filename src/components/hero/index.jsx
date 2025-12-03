@@ -15,9 +15,9 @@ const Hero = ({
   preHeading,
   heading,
   headingElement,
-  headingSize = "Large",
+  headingSize = "large",
   text,
-  textColor = "Dark",
+  textColor = "dark",
   buttons,
   backgroundImage,
   darkenImage,
@@ -37,7 +37,7 @@ const Hero = ({
           text={text}
           textColor={textColor}
           buttons={buttons}
-          textShadow="Medium"
+          textShadow="medium"
         />
       </div>
     </div>

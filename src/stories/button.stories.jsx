@@ -7,16 +7,16 @@ export default {
     variant: {
       control: "select",
       options: [
-        "Solid",
-        "Outline Dark",
-        "Outline Light",
-        "Ghost Neutral",
-        "Ghost Light",
-        "Link",
-        "Link Underline",
-        "Link Dark",
-        "Link Light",
-        "Nav Link Dark",
+        "solid",
+        "outline_dark",
+        "outline_light",
+        "ghost_neutral",
+        "ghost_light",
+        "link",
+        "link_underline",
+        "link_dark",
+        "link_light",
+        "nav_link_dark",
       ],
     },
   },
@@ -27,28 +27,28 @@ export default {
 
 export const Default = {
   args: {
-    variant: "Solid",
+    variant: "solid",
     text: "Button",
   },
 };
 
 export const Solid = {
   args: {
-    variant: "Solid",
+    variant: "solid",
     text: "Button",
   },
 };
 
 export const OutlineDark = {
   args: {
-    variant: "Outline Dark",
+    variant: "outline_dark",
     text: "Button",
   },
 };
 
 export const OutlineLight = {
   args: {
-    variant: "Outline Light",
+    variant: "outline_light",
     text: "Button",
   },
   decorators: [
@@ -62,14 +62,14 @@ export const OutlineLight = {
 
 export const GhostNeutral = {
   args: {
-    variant: "Ghost Neutral",
+    variant: "ghost_neutral",
     text: "Button",
   },
 };
 
 export const GhostLight = {
   args: {
-    variant: "Ghost Light",
+    variant: "ghost_light",
     text: "Button",
   },
   decorators: [
@@ -83,28 +83,28 @@ export const GhostLight = {
 
 export const Link = {
   args: {
-    variant: "Link",
+    variant: "link",
     text: "Button",
   },
 };
 
 export const LinkUnderline = {
   args: {
-    variant: "Link Underline",
+    variant: "link_underline",
     text: "Button",
   },
 };
 
 export const LinkDark = {
   args: {
-    variant: "Link Dark",
+    variant: "link_dark",
     text: "Button",
   },
 };
 
 export const LinkLight = {
   args: {
-    variant: "Link Light",
+    variant: "link_light",
     text: "Button",
   },
   decorators: [

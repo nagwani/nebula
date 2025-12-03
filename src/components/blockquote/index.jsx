@@ -4,8 +4,8 @@ import { cva } from "class-variance-authority";
 const blockquoteVariants = cva("my-8 flex w-full flex-col leading-[normal]", {
   variants: {
     textColor: {
-      Dark: "",
-      Light: "text-white",
+      dark: "",
+      light: "text-white",
     },
   },
 });
@@ -15,8 +15,8 @@ const nameVariants = cva(
   {
     variants: {
       textColor: {
-        Dark: "",
-        Light: "text-white",
+        dark: "",
+        light: "text-white",
       },
     },
   },
@@ -25,8 +25,8 @@ const nameVariants = cva(
 const titleVariants = cva("text-sm leading-5 whitespace-pre-wrap", {
   variants: {
     textColor: {
-      Dark: "text-gray-500",
-      Light: "text-gray-200",
+      dark: "text-gray-500",
+      light: "text-gray-200",
     },
   },
 });

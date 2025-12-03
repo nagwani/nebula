@@ -10,9 +10,9 @@ const cardVariants = cva(
   {
     variants: {
       layout: {
-        "Left aligned": "items-start text-left",
-        "Center aligned": "items-center text-center",
-        "Right aligned": "items-end text-right",
+        left_aligned: "items-start text-left",
+        center_aligned: "items-center text-center",
+        right_aligned: "items-end text-right",
       },
       textColor: {
         Default: null,
@@ -37,7 +37,7 @@ const Card = ({
   image,
   heading,
   headingElement = "h2",
-  layout = "Left aligned",
+  layout = "left_aligned",
   link,
   linkLabel,
   linkVariant = "link",
@@ -80,7 +80,7 @@ const Card = ({
               className="mb-2"
               heading={heading}
               headingElement={headingElement}
-              headingSize="Small"
+              headingSize="small"
               layout={layout}
               textColor={textColor}
             />

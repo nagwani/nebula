@@ -20,10 +20,13 @@ props:
       title: Text Color
       type: string
       examples:
-        - Dark
+        - dark
       enum:
-        - Dark
-        - Light
+        - dark
+        - light
+      meta:enum:
+        dark: Dark
+        light: Light
     headingElement:
       title: Heading Element
       type: string
@@ -36,23 +39,39 @@ props:
         - h4
         - h5
         - h6
+      meta:enum:
+        h1: h1
+        h2: h2
+        h3: h3
+        h4: h4
+        h5: h5
+        h6: h6
     headingSize:
       title: Heading Size
       type: string
       examples:
-        - Medium
+        - medium
       enum:
-        - Small
-        - Medium
-        - Large
-        - Extra Large
+        - small
+        - medium
+        - large
+        - extra_large
+      meta:enum:
+        small: Small
+        medium: Medium
+        large: Large
+        extra_large: Extra Large
     layout:
       title: Layout
       type: string
       examples:
-        - Left aligned
+        - left_aligned
       enum:
-        - Left aligned
-        - Center aligned
-        - Right aligned
+        - left_aligned
+        - center_aligned
+        - right_aligned
+      meta:enum:
+        left_aligned: Left aligned
+        center_aligned: Center aligned
+        right_aligned: Right aligned
 slots: []

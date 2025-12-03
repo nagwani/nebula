@@ -4,9 +4,9 @@ import CardContainer from "@/components/card_container";
 const containerExampleArgs = {
   preHeading: "Featured services",
   heading: "What we offer.",
-  headingSize: "Large",
-  textColor: "Dark",
-  headingPosition: "Center aligned",
+  headingSize: "large",
+  textColor: "dark",
+  headingPosition: "center_aligned",
   headingLevel: "h2",
   layout: "33-33-33",
 };
@@ -18,12 +18,12 @@ const cardExampleArgs = {
     width: 800,
     height: 600,
   },
-  layout: "Left aligned",
+  layout: "left_aligned",
   heading: "Feature or benefit",
   headingElement: "h3",
   text: "Help people become familiar with the organization and its offerings, creating a sense of connection and trust.",
   link: "/",
-  linkVariant: "Link",
+  linkVariant: "link",
 };
 
 export default {
@@ -36,15 +36,15 @@ export default {
     },
     textColor: {
       control: "select",
-      options: ["Dark", "Light"],
+      options: ["dark", "light"],
     },
     headingSize: {
       control: "select",
-      options: ["Extra Large", "Large", "Medium", "Small"],
+      options: ["extra_large", "large", "medium", "small"],
     },
     headingPosition: {
       control: "select",
-      options: ["Left aligned", "Center aligned", "Right aligned"],
+      options: ["left_aligned", "center_aligned", "right_aligned"],
     },
     headingLevel: {
       control: "select",
@@ -109,8 +109,8 @@ export const WithHeading = {
     ...containerExampleArgs,
     preHeading: "Our Services",
     heading: "What We Offer",
-    headingSize: "Large",
-    headingPosition: "Center aligned",
+    headingSize: "large",
+    headingPosition: "center_aligned",
     headingLevel: "h2",
     content: SampleCards,
   },
@@ -119,9 +119,9 @@ export const WithHeading = {
 export const TwoColumnLayout = {
   args: {
     layout: "50-50",
-    textColor: "Dark",
+    textColor: "dark",
     heading: "Featured",
-    headingPosition: "Left aligned",
+    headingPosition: "left_aligned",
     content: TwoCards,
   },
 };
@@ -129,9 +129,9 @@ export const TwoColumnLayout = {
 export const FourColumnLayout = {
   args: {
     layout: "25-25-25-25",
-    textColor: "Dark",
+    textColor: "dark",
     heading: "All Features",
-    headingPosition: "Center aligned",
+    headingPosition: "center_aligned",
     content: FourCards,
   },
 };
@@ -141,7 +141,7 @@ export const LeftAlignedHeading = {
     ...containerExampleArgs,
     preHeading: "Features",
     heading: "Everything you need",
-    headingPosition: "Left aligned",
+    headingPosition: "left_aligned",
     content: SampleCards,
   },
 };
