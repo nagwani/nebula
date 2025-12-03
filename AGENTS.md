@@ -75,6 +75,11 @@ src/components/<component_name>/
 the actual React component implementation. The `component.yml` defines the
 component's metadata, props, and slots for Drupal Canvas.
 
+The directory name must match machineName. The component folder name must
+exactly match the `machineName` value defined in `component.yml`. Use
+`kebab-case` (with hyphens) as the preferred format, though `snake_case` is also
+supported.
+
 After creating components, verify the folder structure:
 
 ```bash
@@ -301,6 +306,34 @@ props:
       type: string
       examples:
         - Enter a heading...
+```
+
+**Prop IDs must be camelCase versions of their titles.**
+
+The prop ID (the key under `properties`) must be the camelCase conversion of the
+`title` value.
+
+```yaml
+# Correct - prop ID is camelCase of title
+props:
+  properties:
+    buttonText:           # camelCase of "Button Text"
+      title: Button Text
+      type: string
+    backgroundColor:      # camelCase of "Background Color"
+      title: Background Color
+      type: string
+    isVisible:            # camelCase of "Is Visible"
+      title: Is Visible
+      type: boolean
+
+# Wrong - prop IDs don't match titles
+props:
+  properties:
+    btn_text:             # should be "buttonText" for title "Button Text"
+      title: Button Text
+    bgColor:              # should be "backgroundColor" for title "Background Color"
+      title: Background Color
 ```
 
 ## Prop types
