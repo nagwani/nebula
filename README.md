@@ -1,53 +1,40 @@
-# `canvas-cc-starter`
+# Nebula
 
-Build and test
-[Drupal Canvas Code Components](https://project.pages.drupalcode.org/canvas/code-components)
-with this preconfigured development environment.
+Nebula provides a template repository for
+[`@drupal-canvas/create`](https://www.npmjs.com/package/@drupal-canvas/create)
+to scaffold a new codebase for working with
+[Drupal Canvas Code Components](https://project.pages.drupalcode.org/canvas/code-components).
+The codebase serves as a development environment fully set up with tooling and
+examples for AI-assisted development workflows.
 
-[Drupal Canvas](https://www.drupal.org/project/canvas) has an in-browser code
-editor for authoring components using React/Preact and Tailwind CSS. Compiling
-these components happens directly in the browser, and they instantly become
-available to content creators.
+## Getting started
 
-The components can also be developed outside of Drupal Canvas, and synchronized
-using [`@drupal-canvas/cli`](https://www.npmjs.com/package/@drupal-canvas/cli).
+Instead of cloning this repository, create a new project interactively:
 
-This starter project aims to provide a development environment. It loosely
-mimics how Drupal Canvas compiles JavaScript and builds the CSS code by using
-[SWC](https://swc.rs) and [Tailwind CSS v4](https://tailwindcss.com).
-
-## ⚠️ Before you start
-
-→ [**Important notes**](./docs/important-notes.md) — issues, current
-limitations, and considerations when developing Code Components for Drupal
-Canvas
+```
+npx @drupal-canvas/create@latest
+```
 
 ## Features
 
-- [Drupal Canvas CLI](https://www.npmjs.com/package/@drupal/xb-cli) installed
+- [`@drupal-canvas/create`](https://www.npmjs.com/package/@drupal-canvas/cli)
+  installed
   - `.env.example` file with instructions specific to this codebase
+- [`@drupal-canvas/eslint-config`](https://www.npmjs.com/package/@drupal-canvas/eslint-config)
+  configured
+  - Recommended rules are added on top of the required validation for the
+    components to work in Drupal Canvas
 - [Storybook](https://storybook.js.org) for developing and presenting the
   components
   - [Viewports](https://storybook.js.org/docs/essentials/viewport) configured to
     match the viewport sizes Drupal Canvas uses
-  - Helper function to load example values for stories (args/prop values) from
-    `component.yml` files:
-    [`src/stories/lib/get-examples.js`](./src/stories/lib/get-examples.js)
-- Compiling with [SWC](https://swc.rs) (Drupal Canvas uses
-  [`@swc/wasm-web`](https://swc.rs/docs/usage/wasm)) through
+- Compiling with [SWC](https://swc.rs) through
   [`@vitejs/plugin-react-swc`](https://www.npmjs.com/package/@vitejs/plugin-react-swc)
+  (Drupal Canvas uses [`@swc/wasm-web`](https://swc.rs/docs/usage/wasm))
 - [Tailwind CSS v4](https://tailwindcss.com) for styling
 - [Prettier](https://prettier.io/) with plugins configured
   - [`prettier-plugin-tailwindcss`](https://www.npmjs.com/package/prettier-plugin-tailwindcss)
   - [`@ianvs/prettier-plugin-sort-imports`](https://www.npmjs.com/package/@ianvs/prettier-plugin-sort-imports)
-- [ESLint](https://eslint.org/) config started from that of
-  [`create-vite`](https://www.npmjs.com/package/create-vite) for its
-  [`react` template](https://github.com/vitejs/vite/blob/main/packages/create-vite/template-react/eslint.config.js),
-  extended specifically for Drupal Canvas:
-  - Disallows named exports and requires default exports in components, which is
-    a requirement in Drupal Canvas
-  - Disallows relative imports as those don't work in Drupal Canvas
-  - Disables the error for missing prop validation
 - Pre-commit hook with [Husky](https://typicode.github.io/husky) for linting and
   formatting staged files using
   [`lint-staged`](https://www.npmjs.com/package/lint-staged)
@@ -56,7 +43,7 @@ Canvas
   - Validating PR titles against
     [the Conventional Commits specification](https://www.conventionalcommits.org/en/v1.0.0)
     (delete `.github/workflows/lint-pr.yml` if you don't want this)
-- Sample components
+- Example components
 
 ## Commands
 
