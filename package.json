@@ -64,7 +64,7 @@
     "code:fix": "run-s -c -n code:fix:**",
     "code:fix:prettier": "npm run s:prettier -- --write",
     "code:fix:eslint": "npm run s:eslint -- --fix",
-    "s:prettier": "prettier \"**/*.{js,jsx,json,html,md,mdx,yml}\"",
+    "s:prettier": "prettier \"**/*.{css,js,jsx,json,html,md,mdx,yml}\"",
     "s:eslint": "eslint \"**/*.{js,jsx,yml,yaml}\"",
     "prepare": "husky"
   }
