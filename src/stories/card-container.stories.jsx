@@ -1,10 +1,30 @@
 import Card from "@/components/card";
 import CardContainer from "@/components/card_container";
 
-import { getComponentExamples } from "./lib/get-examples";
+const containerExampleArgs = {
+  preHeading: "Featured services",
+  heading: "What we offer.",
+  headingSize: "Large",
+  textColor: "Dark",
+  headingPosition: "Center aligned",
+  headingLevel: "h2",
+  layout: "33-33-33",
+};
 
-const containerExampleArgs = await getComponentExamples("card_container");
-const cardExampleArgs = await getComponentExamples("card");
+const cardExampleArgs = {
+  image: {
+    src: "https://placehold.co/800x600@2x.png",
+    alt: "Example image placeholder",
+    width: 800,
+    height: 600,
+  },
+  layout: "Left aligned",
+  heading: "Feature or benefit",
+  headingElement: "h3",
+  text: "Help people become familiar with the organization and its offerings, creating a sense of connection and trust.",
+  link: "/",
+  linkVariant: "Link",
+};
 
 export default {
   title: "Components/Card Container",
@@ -36,17 +56,17 @@ export default {
 const SampleCards = (
   <>
     <Card
-      {...cardExampleArgs[0]}
+      {...cardExampleArgs}
       heading="Card One"
       text="This is the first card in the container."
     />
     <Card
-      {...cardExampleArgs[0]}
+      {...cardExampleArgs}
       heading="Card Two"
       text="This is the second card in the container."
     />
     <Card
-      {...cardExampleArgs[0]}
+      {...cardExampleArgs}
       heading="Card Three"
       text="This is the third card in the container."
     />
@@ -56,12 +76,12 @@ const SampleCards = (
 const TwoCards = (
   <>
     <Card
-      {...cardExampleArgs[0]}
+      {...cardExampleArgs}
       heading="Card One"
       text="This is the first card."
     />
     <Card
-      {...cardExampleArgs[0]}
+      {...cardExampleArgs}
       heading="Card Two"
       text="This is the second card."
     />
@@ -70,23 +90,23 @@ const TwoCards = (
 
 const FourCards = (
   <>
-    <Card {...cardExampleArgs[0]} heading="Card One" text="First card." />
-    <Card {...cardExampleArgs[0]} heading="Card Two" text="Second card." />
-    <Card {...cardExampleArgs[0]} heading="Card Three" text="Third card." />
-    <Card {...cardExampleArgs[0]} heading="Card Four" text="Fourth card." />
+    <Card {...cardExampleArgs} heading="Card One" text="First card." />
+    <Card {...cardExampleArgs} heading="Card Two" text="Second card." />
+    <Card {...cardExampleArgs} heading="Card Three" text="Third card." />
+    <Card {...cardExampleArgs} heading="Card Four" text="Fourth card." />
   </>
 );
 
 export const Default = {
   args: {
-    ...containerExampleArgs[0],
+    ...containerExampleArgs,
     content: SampleCards,
   },
 };
 
 export const WithHeading = {
   args: {
-    ...containerExampleArgs[0],
+    ...containerExampleArgs,
     preHeading: "Our Services",
     heading: "What We Offer",
     headingSize: "Large",
@@ -118,7 +138,7 @@ export const FourColumnLayout = {
 
 export const LeftAlignedHeading = {
   args: {
-    ...containerExampleArgs[0],
+    ...containerExampleArgs,
     preHeading: "Features",
     heading: "Everything you need",
     headingPosition: "Left aligned",

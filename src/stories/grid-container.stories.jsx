@@ -1,9 +1,5 @@
 import GridContainer from "@/components/grid_container";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("grid_container");
-
 export default {
   title: "Components/Grid Container",
   component: GridContainer,
@@ -61,12 +57,13 @@ const FourColumnContent = (
 
 export const Default = {
   args: {
-    ...exampleArgs[0],
+    layout: "33-33-33",
+    gap: "Medium",
     content: ThreeColumnContent,
   },
 };
 
-export const TwoColumn5050 = {
+export const TwoColumnsEqual = {
   args: {
     layout: "50-50",
     gap: "Medium",
@@ -74,15 +71,7 @@ export const TwoColumn5050 = {
   },
 };
 
-export const ThreeColumn333333 = {
-  args: {
-    layout: "33-33-33",
-    gap: "Medium",
-    content: ThreeColumnContent,
-  },
-};
-
-export const TwoColumn7525 = {
+export const TwoColumnsWideLeft = {
   args: {
     layout: "75-25",
     gap: "Medium",
@@ -90,7 +79,7 @@ export const TwoColumn7525 = {
   },
 };
 
-export const TwoColumn2575 = {
+export const TwoColumnsWideRight = {
   args: {
     layout: "25-75",
     gap: "Medium",
@@ -98,7 +87,7 @@ export const TwoColumn2575 = {
   },
 };
 
-export const FourColumn25252525 = {
+export const FourColumnsEqual = {
   args: {
     layout: "25-25-25-25",
     gap: "Medium",

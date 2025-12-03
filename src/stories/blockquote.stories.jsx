@@ -1,9 +1,5 @@
 import Blockquote from "@/components/blockquote";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("blockquote");
-
 export default {
   title: "Components/Blockquote",
   component: Blockquote,
@@ -15,21 +11,11 @@ export default {
   },
 };
 
-const Decorator = ({ children, dark = false }) => (
-  <div className={`max-w-2xl p-8 ${dark ? "bg-slate-800" : ""}`}>
-    {children}
-  </div>
-);
-
 export const Default = {
-  args: exampleArgs[0],
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
+  args: {
+    text: "Insert a quote...",
+    textColor: "Dark",
+  },
 };
 
 export const WithAttribution = {
@@ -39,13 +25,6 @@ export const WithAttribution = {
     name: "Peter Drucker",
     title: "Management Consultant",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const LongQuote = {
@@ -55,13 +34,6 @@ export const LongQuote = {
     name: "Steve Jobs",
     title: "Co-founder, Apple Inc.",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const LightOnDark = {
@@ -73,9 +45,9 @@ export const LightOnDark = {
   },
   decorators: [
     (Story) => (
-      <Decorator dark>
+      <div className="bg-slate-800 p-8">
         <Story />
-      </Decorator>
+      </div>
     ),
   ],
 };
@@ -85,11 +57,4 @@ export const WithoutAttribution = {
     text: "Simplicity is the ultimate sophistication.",
     textColor: "Dark",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };

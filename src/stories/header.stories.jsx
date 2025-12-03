@@ -44,12 +44,3 @@ export const CustomBackground = {
     menu: <MainNavigation />,
   },
 };
-
-export const MinimalNav = {
-  args: {
-    displaySearchForm: false,
-    backgroundColor: "#ffffff",
-    logo: <Logo />,
-    menu: <MainNavigation />,
-  },
-};

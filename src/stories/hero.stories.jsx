@@ -1,9 +1,21 @@
 import Button from "@/components/button";
 import Hero from "@/components/hero";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("hero");
+const exampleArgs = {
+  backgroundImage: {
+    src: "https://placehold.co/1920x1080@2x.png",
+    alt: "Example image placeholder",
+    width: 1920,
+    height: 1080,
+  },
+  layout: "Left aligned",
+  preHeading: "Mission",
+  headingElement: "h2",
+  headingSize: "Extra Large",
+  heading: "This space deserves a hero.",
+  text: "This is a space to welcome visitors to the site. Grab their attention with copy that clearly states what the site is about.",
+  textColor: "Dark",
+};
 
 export default {
   title: "Components/Hero",
@@ -50,22 +62,14 @@ const LightButtons = (
 
 export const Default = {
   args: {
-    ...exampleArgs[0],
-    buttons: SampleButtons,
-  },
-};
-
-export const LeftAligned = {
-  args: {
-    ...exampleArgs[0],
-    layout: "Left aligned",
+    ...exampleArgs,
     buttons: SampleButtons,
   },
 };
 
 export const Centered = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     layout: "Centered",
     buttons: SampleButtons,
   },
@@ -73,7 +77,7 @@ export const Centered = {
 
 export const LightTextOnDarkImage = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textColor: "Light",
     darkenImage: true,
     backgroundImage: {
@@ -88,7 +92,7 @@ export const LightTextOnDarkImage = {
 
 export const ExtraLargeHeading = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     headingSize: "Extra Large",
     heading: "Make a Bold Statement",
     buttons: SampleButtons,
@@ -97,7 +101,7 @@ export const ExtraLargeHeading = {
 
 export const WithPreHeading = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     preHeading: "Welcome",
     heading: "Build Something Amazing",
     text: "Create beautiful, responsive websites with our modern component library.",

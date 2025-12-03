@@ -1,27 +1,19 @@
 import Image from "@/components/image";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("image");
-
 export default {
   title: "Components/Image",
   component: Image,
 };
 
-const Decorator = ({ children }) => (
-  <div className="max-w-2xl p-8">{children}</div>
-);
-
 export const Default = {
-  args: exampleArgs[0],
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
+  args: {
+    image: {
+      src: "https://placehold.co/800x600@2x.png",
+      alt: "Example image placeholder",
+      width: 800,
+      height: 600,
+    },
+  },
 };
 
 export const CustomImage = {
@@ -33,13 +25,6 @@ export const CustomImage = {
       height: 800,
     },
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const SquareImage = {
@@ -51,13 +36,6 @@ export const SquareImage = {
       height: 600,
     },
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const PortraitImage = {
@@ -69,11 +47,4 @@ export const PortraitImage = {
       height: 600,
     },
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };

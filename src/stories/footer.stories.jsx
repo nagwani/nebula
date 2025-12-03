@@ -1,16 +1,14 @@
 import Footer from "@/components/footer";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("footer");
-
 export default {
   title: "Components/Footer",
   component: Footer,
 };
 
 export const Default = {
-  args: exampleArgs[0],
+  args: {
+    text: "© 2025 Company Name. All rights reserved.",
+  },
 };
 
 export const WithLinks = {

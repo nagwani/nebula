@@ -1,9 +1,5 @@
 import Section from "@/components/section";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("section");
-
 export default {
   title: "Components/Section",
   component: Section,
@@ -22,13 +18,6 @@ const SampleContent = () => (
 );
 
 export const Default = {
-  args: {
-    ...exampleArgs[0],
-    content: <SampleContent />,
-  },
-};
-
-export const Normal = {
   args: {
     width: "Normal",
     content: <SampleContent />,

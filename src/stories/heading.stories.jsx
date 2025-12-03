@@ -1,8 +1,12 @@
 import Heading from "@/components/heading";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("heading");
+const exampleArgs = {
+  heading: "Enter a heading...",
+  textColor: "Dark",
+  headingElement: "h2",
+  headingSize: "Medium",
+  layout: "Left aligned",
+};
 
 export default {
   title: "Components/Heading",
@@ -27,130 +31,70 @@ export default {
   },
 };
 
-const Decorator = ({ children, dark = false }) => (
-  <div className={`p-8 ${dark ? "bg-slate-800" : ""}`}>{children}</div>
-);
-
 export const Default = {
-  args: exampleArgs[0],
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
+  args: exampleArgs,
 };
 
 export const ExtraLarge = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     headingSize: "Extra Large",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const Large = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     headingSize: "Large",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const Medium = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     headingSize: "Medium",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const Small = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     headingSize: "Small",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const CenterAligned = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     layout: "Center aligned",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const RightAligned = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     layout: "Right aligned",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const WithPreHeading = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     preHeading: "Pre-heading text",
     heading: "Main heading text",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const LightOnDark = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textColor: "Light",
   },
   decorators: [
     (Story) => (
-      <Decorator dark>
+      <div className="bg-slate-800 p-8">
         <Story />
-      </Decorator>
+      </div>
     ),
   ],
 };

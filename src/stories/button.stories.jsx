@@ -1,9 +1,5 @@
 import Button from "@/components/button";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("button");
-
 export default {
   title: "Components/Button",
   component: Button,
@@ -30,30 +26,30 @@ export default {
 };
 
 export const Default = {
-  args: exampleArgs[0],
+  args: {
+    variant: "Solid",
+    text: "Button",
+  },
 };
 
 export const Solid = {
   args: {
-    ...exampleArgs[0],
     variant: "Solid",
+    text: "Button",
   },
 };
 
 export const OutlineDark = {
   args: {
-    ...exampleArgs[0],
     variant: "Outline Dark",
+    text: "Button",
   },
 };
 
 export const OutlineLight = {
   args: {
-    ...exampleArgs[0],
     variant: "Outline Light",
-  },
-  parameters: {
-    backgrounds: { default: "dark" },
+    text: "Button",
   },
   decorators: [
     (Story) => (
@@ -66,15 +62,15 @@ export const OutlineLight = {
 
 export const GhostNeutral = {
   args: {
-    ...exampleArgs[0],
     variant: "Ghost Neutral",
+    text: "Button",
   },
 };
 
 export const GhostLight = {
   args: {
-    ...exampleArgs[0],
     variant: "Ghost Light",
+    text: "Button",
   },
   decorators: [
     (Story) => (
@@ -87,29 +83,29 @@ export const GhostLight = {
 
 export const Link = {
   args: {
-    ...exampleArgs[0],
     variant: "Link",
+    text: "Button",
   },
 };
 
 export const LinkUnderline = {
   args: {
-    ...exampleArgs[0],
     variant: "Link Underline",
+    text: "Button",
   },
 };
 
 export const LinkDark = {
   args: {
-    ...exampleArgs[0],
     variant: "Link Dark",
+    text: "Button",
   },
 };
 
 export const LinkLight = {
   args: {
-    ...exampleArgs[0],
     variant: "Link Light",
+    text: "Button",
   },
   decorators: [
     (Story) => (

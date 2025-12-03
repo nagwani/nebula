@@ -5,16 +5,4 @@ export default {
   component: SearchResults,
 };
 
-const Decorator = ({ children }) => (
-  <div className="max-w-2xl bg-white p-8">{children}</div>
-);
-
-export const Default = {
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
-};
+export const Default = {};

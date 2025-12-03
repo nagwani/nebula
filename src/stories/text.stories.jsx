@@ -1,8 +1,10 @@
 import Text from "@/components/text";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("text");
+const exampleArgs = {
+  text: "Enter some text...",
+  textSize: "Normal",
+  textColor: "Dark",
+};
 
 export default {
   title: "Components/Text",
@@ -19,101 +21,55 @@ export default {
   },
 };
 
-const Decorator = ({ children, dark = false }) => (
-  <div className={`p-8 ${dark ? "bg-slate-800" : ""}`}>{children}</div>
-);
-
 export const Default = {
-  args: exampleArgs[0],
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
+  args: exampleArgs,
 };
 
 export const ExtraSmall = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textSize: "Extra Small",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const Small = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textSize: "Small",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const Normal = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textSize: "Normal",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const Large = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textSize: "Large",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const ExtraLarge = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textSize: "Extra Large",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const LightOnDark = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textColor: "Light",
   },
   decorators: [
     (Story) => (
-      <Decorator dark>
+      <div className="bg-slate-800 p-8">
         <Story />
-      </Decorator>
+      </div>
     ),
   ],
 };
@@ -124,11 +80,4 @@ export const WithHTML = {
     textSize: "Normal",
     textColor: "Dark",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };

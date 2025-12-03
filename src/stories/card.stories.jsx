@@ -1,8 +1,19 @@
 import Card from "@/components/card";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("card");
+const exampleArgs = {
+  image: {
+    src: "https://placehold.co/800x600@2x.png",
+    alt: "Example image placeholder",
+    width: 800,
+    height: 600,
+  },
+  layout: "Left aligned",
+  heading: "Feature or benefit",
+  headingElement: "h3",
+  text: "Help people become familiar with the organization and its offerings, creating a sense of connection and trust.",
+  link: "/",
+  linkVariant: "Link",
+};
 
 export default {
   title: "Components/Card",
@@ -33,78 +44,39 @@ export default {
   },
 };
 
-const Decorator = ({ children }) => (
-  <div className="flex gap-4 p-8">{children}</div>
-);
-
 export const Default = {
-  args: exampleArgs[0],
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
+  args: exampleArgs,
 };
 
 export const WithLink = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     link: "/learn-more",
     linkLabel: "Learn more",
     linkVariant: "Link",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const CenterAligned = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     layout: "Center aligned",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const CustomColors = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     backgroundColor: "#F0F9FF",
     backgroundColorOnHover: "#E0F2FE",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };
 
 export const WithSolidButton = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     link: "/get-started",
     linkLabel: "Get Started",
     linkVariant: "Solid",
   },
-  decorators: [
-    (Story) => (
-      <Decorator>
-        <Story />
-      </Decorator>
-    ),
-  ],
 };

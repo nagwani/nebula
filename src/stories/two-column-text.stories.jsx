@@ -1,9 +1,21 @@
 import Button from "@/components/button";
 import TwoColumnText from "@/components/two_column_text";
 
-import { getComponentExamples } from "./lib/get-examples";
-
-const exampleArgs = await getComponentExamples("two_column_text");
+const exampleArgs = {
+  image: {
+    src: "https://placehold.co/800x600@2x.png",
+    alt: "Example image placeholder",
+    width: 800,
+    height: 600,
+  },
+  layout: "Left Aligned",
+  preHeading: "Mission",
+  heading: "This space deserves a hero.",
+  headingElement: "h2",
+  headingSize: "Large",
+  text: "This is a space to welcome visitors to the site. Grab their attention with copy that clearly states what the site is about.",
+  textColor: "Dark",
+};
 
 export default {
   title: "Components/Two Column Text",
@@ -37,22 +49,14 @@ const SampleButtons = (
 
 export const Default = {
   args: {
-    ...exampleArgs[0],
-    buttons: SampleButtons,
-  },
-};
-
-export const LeftAligned = {
-  args: {
-    ...exampleArgs[0],
-    layout: "Left Aligned",
+    ...exampleArgs,
     buttons: SampleButtons,
   },
 };
 
 export const Centered = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     layout: "Centered",
     buttons: SampleButtons,
   },
@@ -60,7 +64,7 @@ export const Centered = {
 
 export const WithPreHeading = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     preHeading: "Welcome",
     heading: "Build something amazing",
     text: "Create beautiful, responsive websites with our component library. Designed for developers who value clean code and modern design.",
@@ -70,7 +74,7 @@ export const WithPreHeading = {
 
 export const LightOnDark = {
   args: {
-    ...exampleArgs[0],
+    ...exampleArgs,
     textColor: "Light",
     buttons: (
       <>
