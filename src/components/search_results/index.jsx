@@ -3,11 +3,8 @@ import { JsonApiClient } from "@drupal-api-client/json-api-client";
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 import useSWR from "swr";
 
-const getSearchQuery = () => {
-  if (typeof window === "undefined") return "";
-  const searchParams = new URLSearchParams(window.location.search);
-  return searchParams.get("q") || "";
-};
+const searchParams = new URLSearchParams(window.location.search);
+const q = searchParams.get("q") || "";
 
 const client = new JsonApiClient();
 
@@ -22,11 +19,11 @@ function getOffsetFromLink(link) {
   }
 }
 
-export default function SearchResults() {
+export default function List() {
+  const [links, setLinks] = useState({});
   const [pageOffset, setPageOffset] = useState(0);
-  const q = getSearchQuery();
 
-  const { data, error, isLoading, links } = useSWR(
+  const { data, error, isLoading } = useSWR(
     [
       "index--cms_content",
       {
@@ -42,8 +39,6 @@ export default function SearchResults() {
     ([type, options]) => client.getCollection(type, options),
   );
 
-  const results = data || [];
-
   const handlePage = (link) => {
     const offset = getOffsetFromLink(link);
     if (offset !== null) {
@@ -58,67 +53,65 @@ export default function SearchResults() {
     <div>
       <h2 className="text-2xl font-bold">Search results</h2>
       <ul className="mt-2 space-y-3">
-        {results.map((item, index) => (
+        {data.map((item, index) => (
           <li
             key={index}
             className="mb-1 border-b border-[#E5E7EB] py-3 font-semibold"
           >
             <h3 className="text-[#2563EB]">
-              <a href={item.path?.alias || "#"}>{item.title}</a>
+              <a href={item?.path?.alias}>{item?.title}</a>
             </h3>
           </li>
         ))}
       </ul>
-      {(links?.prev || links?.next) && (
-        <div className="mt-4 flex gap-2">
-          {links?.prev && (
-            <button
-              onClick={() => handlePage(links.prev)}
-              className="flex items-center justify-between rounded rounded-xl border border-[#E5E7EB] bg-white px-2 py-1 text-sm text-[#6B7280]"
+      <div className="mt-4 flex gap-2">
+        {links?.prev && (
+          <button
+            onClick={() => handlePage(links.prev)}
+            className="flex items-center justify-between rounded rounded-xl border border-[#E5E7EB] bg-white px-2 py-1 text-sm text-[#6B7280]"
+          >
+            <svg
+              className="mr-1"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                className="mr-1"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10 12L6 8L10 4"
-                  stroke="#4B5563"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              Previous
-            </button>
-          )}
-          {links?.next && (
-            <button
-              onClick={() => handlePage(links.next)}
-              className="flex items-center justify-between rounded rounded-xl border border-[#E5E7EB] bg-white px-2 py-1 text-sm text-[#6B7280]"
+              <path
+                d="M10 12L6 8L10 4"
+                stroke="#4B5563"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Previous
+          </button>
+        )}
+        {links?.next && (
+          <button
+            onClick={() => handlePage(links.next)}
+            className="flex items-center justify-between rounded rounded-xl border border-[#E5E7EB] bg-white px-2 py-1 text-sm text-[#6B7280]"
+          >
+            Next
+            <svg
+              className="ml-1"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Next
-              <svg
-                className="ml-1"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6 12L10 8L6 4"
-                  stroke="#4B5563"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          )}
-        </div>
-      )}
+              <path
+                d="M6 12L10 8L6 4"
+                stroke="#4B5563"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        )}
+      </div>
     </div>
   );
 }
