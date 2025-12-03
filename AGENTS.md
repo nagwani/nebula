@@ -125,6 +125,89 @@ will not work. Both `index.jsx` and `component.yml` are required.
 - Avoid hardcoded color values; use theme tokens instead.
 - Follow the existing focus, hover, and active state patterns from examples.
 
+## Color props must use variants, not color codes
+
+**Never create props that allow users to pass color codes** (hex values, RGB,
+HSL, or any raw color strings). Instead, define a small set of human-readable
+variants using CVA that map to the design tokens in `global.css`.
+
+**Always check `global.css` for available design tokens.** The tokens defined
+there (such as `primary-*`, `gray-*`, etc.) are the source of truth for color
+values in this project.
+
+**Wrong - allowing raw color values:**
+
+```yaml
+# ❌ BAD: Allows arbitrary color codes as prop values
+props:
+  properties:
+    backgroundColor:
+      title: Background Color
+      type: string
+      examples:
+        - "#3b82f6"
+```
+
+```jsx
+// ❌ BAD: Uses inline style with raw color value
+const Card = ({ backgroundColor }) => (
+  <div style={{ backgroundColor }}>{/* ... */}</div>
+);
+```
+
+**Correct - using CVA variants with design tokens:**
+
+```yaml
+# ✅ GOOD: Offers curated color scheme options
+props:
+  properties:
+    colorScheme:
+      title: Color Scheme
+      type: string
+      enum:
+        - default
+        - primary
+        - muted
+        - dark
+      meta:enum:
+        default: Default (White)
+        primary: Primary (Blue)
+        muted: Muted (Light Gray)
+        dark: Dark
+      examples:
+        - default
+```
+
+```jsx
+// ✅ GOOD: Uses CVA variants mapped to design tokens
+import { cva } from "class-variance-authority";
+
+const cardVariants = cva("rounded-lg p-6", {
+  variants: {
+    colorScheme: {
+      default: "bg-white text-black",
+      primary: "bg-primary-600 text-white",
+      muted: "bg-gray-100 text-gray-700",
+      dark: "bg-gray-900 text-white",
+    },
+  },
+  defaultVariants: {
+    colorScheme: "default",
+  },
+});
+
+const Card = ({ colorScheme, children }) => (
+  <div className={cardVariants({ colorScheme })}>{children}</div>
+);
+```
+
+This approach ensures:
+
+- Consistent colors across the design system
+- Users select from curated, meaningful options (not arbitrary values)
+- Easy theme updates by modifying `global.css` tokens
+- Better accessibility through tested color combinations
+
 ## Storybook stories
 
 **CRITICAL: Every component MUST have an individual story file.**
