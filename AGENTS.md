@@ -17,6 +17,17 @@ examples/
 └── stories/        # Example stories (for reference)
 ```
 
+# Package manager
+
+Detect the package manager by checking for lock files in the project root:
+
+- `package-lock.json` → npm (`npm run`, `npx`)
+- `yarn.lock` → yarn (`yarn`, `yarn dlx`)
+- `pnpm-lock.yaml` → pnpm (`pnpm`, `pnpm dlx`)
+- `bun.lockb` → bun (`bun run`, `bunx`)
+
+Use the detected package manager for all commands in these instructions.
+
 # Creating new components
 
 **Always start from an example.** When asked to create a new component:
@@ -43,6 +54,34 @@ Then modify the copied files to implement the Alert component.
 Components use the `@/components` import alias, which points to
 `src/components`. When you copy and modify examples, the imports will work
 automatically.
+
+# Validating changes
+
+After creating or modifying components, always validate your code by running the
+`code:fix` script:
+
+```bash
+code:fix
+```
+
+This command runs Prettier and ESLint with auto-fix enabled, ensuring consistent
+formatting, common issues, and Drupal Canvas Code Component requirements. Run
+this before considering any component work complete.
+
+If the command reports errors that couldn't be automatically fixed, address them
+manually in the code and re-run the command until it passes without errors.
+
+# Uploading components
+
+When component work is complete and validated, ask the user if they would like
+to upload the modified components to Canvas. Use the following command format:
+
+```bash
+canvas upload -c component1,component2,component3
+```
+
+Replace `component1,component2,component3` with the actual component names that
+were created or modified (e.g., `canvas upload -c button,card,hero`).
 
 # Component metadata files (`component.yml`)
 
