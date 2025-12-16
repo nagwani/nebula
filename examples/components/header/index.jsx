@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import SearchButton from "@/components/search_button";
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
+import { cn } from "drupal-canvas";
 
 const headerVariants = cva(
   cn(

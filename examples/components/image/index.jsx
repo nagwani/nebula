@@ -1,4 +1,4 @@
-import ResponsiveImage from "next-image-standalone";
+import { Image as ResponsiveImage } from "drupal-canvas";
 
 const Image = ({ image }) => {
   const { src, alt, width, height } = image;

@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
+import { cn } from "drupal-canvas";
 
 const gridVariants = cva("grid w-full", {
   variants: {

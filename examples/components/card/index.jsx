@@ -1,9 +1,7 @@
 import Button from "@/components/button";
 import Heading from "@/components/heading";
-import FormattedText from "@/lib/FormattedText";
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
-import Image from "next-image-standalone";
+import { cn, FormattedText, Image } from "drupal-canvas";
 
 const cardVariants = cva(
   "flex w-full max-w-md flex-col items-center gap-4 rounded-2xl pb-6 leading-[normal]",

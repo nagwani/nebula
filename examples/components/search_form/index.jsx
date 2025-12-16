@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "drupal-canvas";
 
 const searchParams = new URLSearchParams(window.location.search);
 const q = searchParams.get("q") || "";

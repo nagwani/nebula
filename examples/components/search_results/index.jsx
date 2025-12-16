@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { JsonApiClient } from "@drupal-api-client/json-api-client";
+import { JsonApiClient } from "drupal-canvas";
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 import useSWR from "swr";
 

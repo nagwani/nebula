@@ -1,4 +1,4 @@
-import Image from "next-image-standalone";
+import { Image } from "drupal-canvas";
 
 const LogoCard = ({ backgroundColor = "#F1F5F9", image }) => {
   const { src, alt, width, height } = image;

@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { sortMenu } from "@/lib/jsonapi-utils";
-import { cn } from "@/lib/utils";
-import { JsonApiClient } from "@drupal-api-client/json-api-client";
+import { cn, JsonApiClient, sortMenu } from "drupal-canvas";
 import useSWR from "swr";
 
 const client = new JsonApiClient();

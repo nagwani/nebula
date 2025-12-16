@@ -1,6 +1,6 @@
 import GridContainer from "@/components/grid_container";
 import Heading from "@/components/heading";
-import { cn } from "@/lib/utils";
+import { cn } from "drupal-canvas";
 
 const ThreeColumnCardContainer = ({
   className,

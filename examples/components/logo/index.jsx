@@ -1,4 +1,4 @@
-import { getSiteData } from "@/lib/drupal-utils";
+import { getSiteData } from "drupal-canvas";
 
 const Branding = () => {
   const { homeUrl, siteName } = getSiteData().branding;

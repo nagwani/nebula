@@ -1,5 +1,5 @@
-import FormattedText from "@/lib/FormattedText";
 import { cva } from "class-variance-authority";
+import { FormattedText } from "drupal-canvas";
 
 const blockquoteVariants = cva("my-8 flex w-full flex-col leading-[normal]", {
   variants: {

@@ -1,7 +1,7 @@
 import Heading from "@/components/heading";
 import Text from "@/components/text";
 import { cva } from "class-variance-authority";
-import ResponsiveImage from "next-image-standalone";
+import { Image as ResponsiveImage } from "drupal-canvas";
 
 const heroVariants = cva("mx-auto flex w-full max-w-[1360px] flex-col gap-8", {
   variants: {
