@@ -31,6 +31,7 @@ const cardVariants = cva(
 const Card = ({
   backgroundColor = "#ffffff",
   backgroundColorOnHover = "#E2E8F0",
+  byline,
   className,
   image,
   heading,
@@ -46,6 +47,49 @@ const Card = ({
   const cardBackgroundClassNameOnHover = `card-${backgroundColorOnHover.substring(1)}`;
   const { src, alt, width, height } = image;
 
+  const cardContent = (
+    <div
+      className={cn(
+        cardVariants({ layout, textColor, image: !!image }),
+        cardBackgroundClassName,
+        cardBackgroundClassNameOnHover,
+        className,
+      )}
+    >
+      {image && (
+        <Image
+          {...{ src, alt, width, height }}
+          className="w-full rounded-2xl object-cover object-center"
+        />
+      )}
+      <div className="px-6 pt-2">
+        {heading && (
+          <Heading
+            className="mb-2"
+            heading={heading}
+            headingElement={headingElement}
+            headingSize="small"
+            layout={layout}
+            textColor={textColor}
+          />
+        )}
+        {byline && (
+          <div className="mt-3 mb-2 text-xs font-semibold text-gray-500">
+            {byline}
+          </div>
+        )}
+        {text && (
+          <FormattedText className="mb-4 leading-6">{text}</FormattedText>
+        )}
+        {link && linkLabel && (
+          <Button link={link} variant={linkVariant}>
+            {linkLabel}
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <>
       <style>
@@ -58,41 +102,7 @@ const Card = ({
           }
         `}
       </style>
-      <div
-        className={cn(
-          cardVariants({ layout, textColor, image: !!image }),
-          cardBackgroundClassName,
-          cardBackgroundClassNameOnHover,
-          className,
-        )}
-      >
-        {image && (
-          <Image
-            {...{ src, alt, width, height }}
-            className="w-full rounded-2xl object-cover object-center"
-          />
-        )}
-        <div className="px-6 pt-2">
-          {heading && (
-            <Heading
-              className="mb-2"
-              heading={heading}
-              headingElement={headingElement}
-              headingSize="small"
-              layout={layout}
-              textColor={textColor}
-            />
-          )}
-          {text && (
-            <FormattedText className="mb-4 leading-6">{text}</FormattedText>
-          )}
-          {link && linkLabel && (
-            <Button link={link} variant={linkVariant}>
-              {linkLabel}
-            </Button>
-          )}
-        </div>
-      </div>
+      {link && !linkLabel ? <a href={link}>{cardContent}</a> : cardContent}
     </>
   );
 };

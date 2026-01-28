@@ -53,6 +53,11 @@ props:
         h4: h4
         h5: h5
         h6: h6
+    byline:
+      title: Byline
+      type: string
+      examples:
+        - Alice Williams
     text:
       title: Text
       type: string
