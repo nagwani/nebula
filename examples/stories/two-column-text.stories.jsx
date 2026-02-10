@@ -8,7 +8,8 @@ const exampleArgs = {
     width: 800,
     height: 600,
   },
-  layout: "left_aligned",
+  layout: "text_image",
+  columnWidths: "50_50",
   preHeading: "Mission",
   heading: "This space deserves a hero.",
   headingElement: "h2",
@@ -23,7 +24,11 @@ export default {
   argTypes: {
     layout: {
       control: "select",
-      options: ["left_aligned", "centered"],
+      options: ["text_image", "image_text"],
+    },
+    columnWidths: {
+      control: "select",
+      options: ["33_66", "50_50", "66_33"],
     },
     textColor: {
       control: "select",
@@ -47,27 +52,56 @@ const SampleButtons = (
   </>
 );
 
-export const Default = {
+export const TextImage = {
   args: {
     ...exampleArgs,
+    layout: "text_image",
+    columnWidths: "50_50",
     buttons: SampleButtons,
   },
 };
 
-export const Centered = {
+export const ImageText = {
   args: {
     ...exampleArgs,
-    layout: "centered",
+    layout: "image_text",
+    columnWidths: "50_50",
     buttons: SampleButtons,
   },
 };
 
-export const WithPreHeading = {
+export const Text33Image66 = {
   args: {
     ...exampleArgs,
-    preHeading: "Welcome",
-    heading: "Build something amazing",
-    text: "Create beautiful, responsive websites with our component library. Designed for developers who value clean code and modern design.",
+    layout: "text_image",
+    columnWidths: "33_66",
+    buttons: SampleButtons,
+  },
+};
+
+export const Text50Image50 = {
+  args: {
+    ...exampleArgs,
+    layout: "text_image",
+    columnWidths: "50_50",
+    buttons: SampleButtons,
+  },
+};
+
+export const Text66Image33 = {
+  args: {
+    ...exampleArgs,
+    layout: "text_image",
+    columnWidths: "66_33",
+    buttons: SampleButtons,
+  },
+};
+
+export const ImageTextNarrowText = {
+  args: {
+    ...exampleArgs,
+    layout: "image_text",
+    columnWidths: "33_66",
     buttons: SampleButtons,
   },
 };
@@ -90,16 +124,4 @@ export const LightOnDark = {
       </div>
     ),
   ],
-};
-
-export const WithoutImage = {
-  args: {
-    layout: "left_aligned",
-    heading: "Simple and Clean",
-    headingElement: "h2",
-    headingSize: "large",
-    text: "Sometimes you just need text without an image. This layout works great for that.",
-    textColor: "dark",
-    buttons: SampleButtons,
-  },
 };
