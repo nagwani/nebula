@@ -1,8 +1,13 @@
-# Scraping URLs for design reference
+---
+name: nebula-scrape-url
+description:
+  Capture web page screenshots and HTML for design reference. Use when the user
+  provides a URL and asks to build, recreate, or implement a design. Runs
+  `scripts/scrape-page.js` to capture desktop/tablet/mobile screenshots and
+  HTML. Not for Figma, GitHub, or documentation URLs.
+---
 
-When the user asks to build, recreate, or implement something based on a URL
-(e.g., "Build me this page", "Recreate this design", "Make this component"), use
-the scraping script to capture the page before starting work.
+# Scraping URLs for design reference
 
 **This applies to web page URLs only.** Do not use this for:
 
@@ -29,8 +34,7 @@ the scraping script to capture the page before starting work.
 
 4. **Use the HTML** to understand the content structure and hierarchy.
 
-5. **Build the components** following the patterns in the "Requirements for
-   creating or modifying components" section.
+5. **Build the components** using the `nebula-component-creation` skill.
 
 ## Example
 

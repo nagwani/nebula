@@ -15,19 +15,53 @@ Instead of cloning this repository, create a new project interactively:
 npx @drupal-canvas/create@latest
 ```
 
-## AI-assisted development workflows
+## AI-assisted development
 
-Different AI tools have different configuration files. To apply the provided AI
-instructions to your AI agent use:
+[Agent skills](https://agentskills.io) are located in `.agents/skills/`.
 
+- `nebula-*` skills provide conventions and workflows specific for this
+  repository.
+- `canvas-*` skills are generic Canvas Code Component component guidance
+  installed from
+  [`drupal-canvas/skills`](https://github.com/drupal-canvas/skills).
+
+### Setup
+
+No setup is required for the following coding agents; they read directly from
+`.agents/skills/`: Amp, Codex, Gemini CLI, GitHub Copilot, Kimi Code CLI,
+OpenCode. (This list can become outdated quickly; by the time you read this,
+additional coding agents may already standardize on this directory.)
+
+If your coding agent does not standardize on this directory (for example, Cursor
+or Claude Code), manually symlink the relevant skill from `.agents/skills/`:
+
+```bash
+# For Claude Code
+ln -s .agents/skills/<skill-name> .claude/skills/<skill-name>
+
+# For Cursor
+ln -s .agents/skills/<skill-name> .cursor/skills/<skill-name>
 ```
-npx ruler apply --agents=<agent1,agent2,...>
+
+### Adding new skills
+
+Install new skills from [skills.sh](https://skills.sh). For example:
+
+```bash
+npx skills add vercel-labs/agent-skills
 ```
 
-For example, `npx ruler apply --agents=cursor` or
-`npx ruler apply --agents=claude`.  
-For complete list of supported agents, see:
-<https://github.com/intellectronica/ruler#supported-ai-agents>.
+### Updating skills
+
+Update the Drupal Canvas skills by re-adding and selecting all of them:
+
+```bash
+npx skills add drupal-canvas/skills
+```
+
+Once [vercel-labs/skills#337](https://github.com/vercel-labs/skills/issues/337)
+is resolved, you'll be able to use the `npx skills check` and
+`npx skills update` to check for and apply updates more efficiently.
 
 ## Features
 
@@ -61,16 +95,15 @@ For complete list of supported agents, see:
 
 ## Commands
 
-| Command                          | Description                                                                     |
-| -------------------------------- | ------------------------------------------------------------------------------- |
-| `npx ruler [command] [options]`  | Runs [Ruler](https://www.npmjs.com/package/@intellectronica/ruler) CLI commands |
-| `npx canvas [command] [options]` | Runs Drupal Canvas CLI commands <br> (`npx canvas` lists available commands)    |
-| `npm run dev`                    | Starts Storybook's development server                                           |
-| `npm run storybook`              | Alias for `dev` command                                                         |
-| `npm run build-storybook`        | Creates a static Storybook build                                                |
-| `npm run code:check`             | Runs all code checks                                                            |
-| `npm run code:check:prettier`    | Checks code formatting with Prettier                                            |
-| `npm run code:check:eslint`      | Checks code with ESLint                                                         |
-| `npm run code:fix`               | Runs all code fixes                                                             |
-| `npm run code:fix:prettier`      | Fixes code formatting with Prettier                                             |
-| `npm run code:fix:eslint`        | Fixes code with ESLint                                                          |
+| Command                          | Description                                                                  |
+| -------------------------------- | ---------------------------------------------------------------------------- |
+| `npx canvas [command] [options]` | Runs Drupal Canvas CLI commands <br> (`npx canvas` lists available commands) |
+| `npm run dev`                    | Starts Storybook's development server                                        |
+| `npm run storybook`              | Alias for `dev` command                                                      |
+| `npm run build-storybook`        | Creates a static Storybook build                                             |
+| `npm run code:check`             | Runs all code checks                                                         |
+| `npm run code:check:prettier`    | Checks code formatting with Prettier                                         |
+| `npm run code:check:eslint`      | Checks code with ESLint                                                      |
+| `npm run code:fix`               | Runs all code fixes                                                          |
+| `npm run code:fix:prettier`      | Fixes code formatting with Prettier                                          |
+| `npm run code:fix:eslint`        | Fixes code with ESLint                                                       |

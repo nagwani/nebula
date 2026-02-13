@@ -1,12 +1,18 @@
-# Dynamic content and data fetching
+---
+name: canvas-data-fetching
+description:
+  Fetch and render Drupal content in Canvas components with JSON:API and SWR
+  patterns. Use when building content lists, integrating with SWR, or querying
+  related entities. Covers JsonApiClient, DrupalJsonApiParams, relationship
+  handling, and filter patterns.
+---
 
-This document covers how to fetch data in components and the workflow for
-creating dynamic content lists that pull data from Drupal.
+# Data fetching
 
 ## Data fetching with SWR
 
-Use [SWR](https://swr.vercel.app/) for all data fetching in components. SWR
-provides caching, revalidation, and a clean hook-based API.
+Use [SWR](https://swr.vercel.app/) for all data fetching. It provides caching,
+revalidation, and a clean hook-based API.
 
 ```jsx
 import useSWR from "swr";

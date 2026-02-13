@@ -1,27 +1,23 @@
-# Requirements for creating or modifying components
-
-**Always study `examples/` first and follow their patterns.**
+---
+name: canvas-styling-conventions
+description:
+  Style Canvas components with Tailwind CSS 4 theme tokens and approved utility
+  patterns. Use when (1) Adding colors or styling to components, (2) Working
+  with Tailwind theme tokens, (3) Adding or updating design tokens in
+  global.css, (4) Creating color/style props. Covers @theme variables, CVA
+  variants, and cn() utility.
+---
 
 ## Technology stack
 
-- React 19;
-- Tailwind CSS 4.1+;
-- class-variance-authority (CVA) for component variants;
-- `clsx` and `tailwind-merge` via the `cn()` utility;
-- `FormattedText` component from `@/lib/FormattedText` for rendering HTML
-  content.
+| Technology                           | Purpose            |
+| ------------------------------------ | ------------------ |
+| Tailwind CSS 4.1+                    | Styling            |
+| class-variance-authority (CVA)       | Component variants |
+| `clsx` + `tailwind-merge` via `cn()` | Class name merging |
 
-## Component patterns
-
-- Use CVA (`cva()`) to define variant styles for components.
-- Use the `cn()` utility from `@/lib/utils` to merge class names.
-- Always export components as default exports.
-- Accept a `className` prop for style customization.
-- Use the `@/components` import alias when importing other components.
-- Only use dependencies listed in the technology stack; do not add third-party
-  imports or create new library utilities.
-- Place each component in its own folder under `src/components/` with an
-  `index.jsx` and `component.yml` file. Do not create nested folder structures.
+Only use these dependencies for styling. Do not add third-party CSS libraries or
+create new styling utilities.
 
 ## Styling conventions
 
@@ -29,15 +25,54 @@
 - Avoid hardcoded color values; use theme tokens instead.
 - Follow the existing focus, hover, and active state patterns from examples.
 
+## The cn() utility
+
+Use `cn()` to merge Tailwind classes. It combines `clsx` for conditional classes
+with `tailwind-merge` to resolve conflicting utilities. Import from either
+source:
+
+```jsx
+import { cn } from "@/lib/utils";
+// or
+import { cn } from "drupal-canvas";
+```
+
+Example usage:
+
+```jsx
+const Button = ({ variant, className, children }) => (
+  <button
+    className={cn(
+      "rounded px-4 py-2",
+      variant === "primary" && "bg-primary-600 text-white",
+      variant === "secondary" && "bg-gray-200 text-gray-800",
+      className,
+    )}
+  >
+    {children}
+  </button>
+);
+```
+
+## Accept className for style customization
+
+Every component should accept a `className` prop to allow style overrides. Pass
+it to `cn()` as the last argument so consumer classes take precedence.
+
+```jsx
+const Card = ({ colorScheme, className, children }) => (
+  <div className={cn(cardVariants({ colorScheme }), className)}>{children}</div>
+);
+```
+
 ## Tailwind 4 theme variables
 
-This project uses Tailwind CSS 4's `@theme` directive to define design tokens in
-`global.css`. Variables defined inside `@theme { }` automatically become
+Canvas projects use Tailwind CSS 4's `@theme` directive to define design tokens
+in `global.css`. Variables defined inside `@theme { }` automatically become
 available as Tailwind utility classes.
 
 **Always check `global.css` for available design tokens.** The `@theme` block is
-the source of truth for colors, fonts, breakpoints, and other design tokens in
-this project.
+the source of truth for colors, fonts, breakpoints, and other design tokens.
 
 ### How theme variables map to utility classes
 
@@ -67,22 +102,12 @@ Given this definition in `global.css`:
 You can use these colors with any color-accepting utility:
 
 ```jsx
-// ✅ GOOD: Using theme tokens via utility classes
+// Correct
 <button className="bg-primary-600 hover:bg-primary-700 text-white">
   Click me
 </button>
 
-<div className="border border-primary-600">
-  Bordered content
-</div>
-
-<span className="text-primary-600">
-  Colored text
-</span>
-```
-
-```jsx
-// ❌ AVOID: Hardcoding hex values when theme tokens exist
+// Wrong
 <button className="bg-[#1899cb] text-white hover:bg-[#1487b4]">Click me</button>
 ```
 
@@ -150,12 +175,12 @@ variants using CVA that map to the design tokens in `global.css`.
 
 **Always check `global.css` for available design tokens.** The tokens defined
 there (such as `primary-*`, `gray-*`, etc.) are the source of truth for color
-values in this project.
+values.
 
 **Wrong - allowing raw color values:**
 
 ```yaml
-# ❌ BAD: Allows arbitrary color codes as prop values
+# Wrong
 props:
   properties:
     backgroundColor:
@@ -166,7 +191,7 @@ props:
 ```
 
 ```jsx
-// ❌ BAD: Uses inline style with raw color value
+// Wrong
 const Card = ({ backgroundColor }) => (
   <div style={{ backgroundColor }}>{/* ... */}</div>
 );
@@ -175,7 +200,7 @@ const Card = ({ backgroundColor }) => (
 **Correct - using CVA variants with design tokens:**
 
 ```yaml
-# ✅ GOOD: Offers curated color scheme options
+# Correct
 props:
   properties:
     colorScheme:
@@ -196,7 +221,7 @@ props:
 ```
 
 ```jsx
-// ✅ GOOD: Uses CVA variants mapped to design tokens
+// Correct
 import { cva } from "class-variance-authority";
 
 const cardVariants = cva("rounded-lg p-6", {
@@ -224,42 +249,3 @@ This approach ensures:
 - Users select from curated, meaningful options (not arbitrary values)
 - Easy theme updates by modifying `global.css` tokens
 - Better accessibility through tested color combinations
-
-## Storybook stories
-
-**CRITICAL: Every component MUST have an individual story file.**
-
-Each component in `src/components/` requires a corresponding story file in
-`src/stories/`. The story file:
-
-- Must be named `<component-name>.stories.jsx` (kebab-case with hyphens)
-- Must import the component from `@/components/<component_name>`
-- Must showcase the component's props and variants
-
-**Example structure:**
-
-```
-src/components/my_card/
-├── index.jsx
-└── component.yml
-
-src/stories/my-card.stories.jsx  # Required story file for my_card component
-```
-
-**Story file requirements:**
-
-- Use Storybook CSF3 format (object-based stories).
-- Include `argTypes` for props with predefined options (like enums).
-- Create multiple story exports to showcase different variants.
-- Use decorators when components need specific backgrounds (e.g., dark
-  backgrounds for light-colored components).
-
-After creating components, verify story files exist:
-
-```bash
-# List all story files
-ls src/stories/*.stories.jsx
-
-# Verify a specific component has its story
-ls src/stories/<component-name>.stories.jsx
-```

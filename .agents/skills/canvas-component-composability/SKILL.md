@@ -1,4 +1,11 @@
-# Component composability
+---
+name: canvas-component-composability
+description:
+  Design Canvas-ready React components with slots and decomposition-first
+  patterns. Use when (1) Designing a component's prop/slot structure, (2) A
+  component is growing too large, (3) Deciding between props vs slots, (4)
+  Refactoring monolithic components. Ensures Canvas compatibility.
+---
 
 **Prefer small, focused components over monolithic ones with many props.** When
 a component starts accumulating many unrelated props, it's often a sign that it
@@ -27,7 +34,7 @@ When a component needs to render variable content, use a slot instead of props
 with complex structures:
 
 ```jsx
-// ❌ BAD: Passing content as complex props
+// Wrong
 const ResourceDetail = ({
   metadata: [
     { label: "Type", value: "Report" },
@@ -40,10 +47,8 @@ const ResourceDetail = ({
     ))}
   </div>
 );
-```
 
-```jsx
-// ✅ GOOD: Use a slot to accept composed children
+// Correct
 const ResourceMetadata = ({ items }) => (
   <div className="flex flex-col gap-2">{items}</div>
 );
@@ -108,10 +113,10 @@ Elements that appear on many pages but aren't always needed together should be
 separate components:
 
 ```jsx
-// ❌ BAD: Monolithic component with page-level elements baked in
+// Wrong
 const ResourceDetail = ({
-  breadcrumbItems, // Should be separate
-  title, // Should be separate
+  breadcrumbItems,
+  title,
   date,
   taxonomyTag,
   coverImage,
@@ -122,13 +127,11 @@ const ResourceDetail = ({
   <div>
     <Breadcrumb items={breadcrumbItems} />
     <Heading text={title} element="h1" />
-    {/* ... rest of component */}
+    {/* ... */}
   </div>
 );
-```
 
-```jsx
-// ✅ GOOD: Compose smaller components in the page story
+// Correct
 const ResourceDetailPage = () => (
   <PageLayout>
     <Section width="wide" content={<Breadcrumb items={breadcrumbItems} />} />
@@ -156,17 +159,15 @@ Don't build two-column or grid layouts into content components. Use layout
 components like `grid-container` and compose content into them:
 
 ```jsx
-// ❌ BAD: Layout baked into the component
+// Wrong
 const ResourceDetail = ({ leftContent, rightContent }) => (
   <div className="flex gap-10">
     <div className="w-[300px]">{leftContent}</div>
     <div className="flex-1">{rightContent}</div>
   </div>
 );
-```
 
-```jsx
-// ✅ GOOD: Use grid-container for column layouts
+// Correct
 <GridContainer
   layout="25-75"
   gap="extra_large"
@@ -179,18 +180,8 @@ const ResourceDetail = ({ leftContent, rightContent }) => (
       </div>
     </>
   }
-/>
+/>;
 ```
-
-## Benefits of composability
-
-1. **Flexibility**: Components can be used in different contexts and
-   combinations
-2. **Reusability**: Small components are easier to reuse across pages
-3. **Maintainability**: Changes to one piece don't affect unrelated pieces
-4. **Canvas compatibility**: Smaller components map better to Canvas's
-   component-based editing model
-5. **Testing**: Smaller components are easier to test in isolation
 
 ## When NOT to decompose
 
@@ -202,11 +193,3 @@ Keep components together when:
   backgrounds)
 - **Decomposition would create components with only 1-2 props** that aren't
   useful elsewhere
-
-## Naming decomposed components
-
-When extracting pieces from a larger component:
-
-- Use descriptive names that indicate purpose: `article-meta`, `resource-cover`
-- Avoid names tied to the parent: don't call it `resource-detail-cover`
-- Follow existing patterns: check `src/components/` for similar components

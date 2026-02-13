@@ -1,7 +1,11 @@
-# Component metadata files (`component.yml`)
-
-Each component requires a `component.yml` file that defines its metadata, props,
-and slots.
+---
+name: canvas-component-metadata
+description:
+  Define valid component.yml metadata for Canvas components, including props,
+  slots, and enums. Use when (1) Creating a new component, (2) Adding or
+  modifying props, (3) Troubleshooting "not a valid choice" or prop type errors,
+  (4) Mapping enums to CVA variants.
+---
 
 ## File structure
 
@@ -9,16 +13,18 @@ Every `component.yml` must include these top-level keys:
 
 ```yaml
 name: Component Name # Human-readable display name
-machineName: component_name # Machine name in snake_case
+machineName: component-name # Machine name in kebab-case
 status: true # Whether the component is enabled
 required: [] # Array of required prop names
 props:
   properties:
     # ... prop definitions
-slots: [] # Array of slot definitions or empty
+slots: [] # Use [] only when there are no slots; otherwise use an object map
 ```
 
-**Props must have title and examples.**
+## Props
+
+### Requirements
 
 Every prop definition must include a `title` for the UI label. The `examples`
 array is required for required props and recommended for all others. Only the
@@ -40,7 +46,7 @@ The prop ID (the key under `properties`) must be the camelCase conversion of the
 `title` value.
 
 ```yaml
-# Correct - prop ID is camelCase of title
+# Correct
 props:
   properties:
     buttonText:           # camelCase of "Button Text"
@@ -53,7 +59,7 @@ props:
       title: Is Visible
       type: boolean
 
-# Wrong - prop IDs don't match titles
+# Wrong
 props:
   properties:
     btn_text:             # should be "buttonText" for title "Button Text"
@@ -62,9 +68,9 @@ props:
       title: Background Color
 ```
 
-## Prop types
+### Prop types
 
-### Text
+#### Text
 
 Basic text input. Stored as a string value.
 
@@ -74,7 +80,7 @@ examples:
   - Hello, world!
 ```
 
-### Formatted text
+#### Formatted text
 
 Rich text content with HTML formatting support, displayed in a block context.
 
@@ -86,7 +92,7 @@ examples:
   - <p>This is <strong>formatted</strong> text with HTML.</p>
 ```
 
-### Link
+#### Link
 
 URL or URI reference for links to internal or external resources.
 
@@ -105,19 +111,19 @@ example value for `uri-reference` props—it can cause validation failures durin
 upload. Always use realistic path-like examples:
 
 ```yaml
-# ✅ Correct - proper path examples
+# Correct
 examples:
   - /resources
   - /about/team
   - https://example.com/page
 
-# ❌ Wrong - can cause upload failures
+# Wrong
 examples:
   - "#"
   - ""
 ```
 
-### Image
+#### Image
 
 Reference to an image object with metadata like alt text, dimensions, and file
 URL. Only the file URL is required to exist, all other metadata is always
@@ -134,7 +140,7 @@ examples:
     height: 1180
 ```
 
-### Video
+#### Video
 
 Reference to a video object with metadata like dimensions and file URL. Only the
 file URL is required to exist, all other metadata is always optional.
@@ -147,7 +153,7 @@ examples:
     poster: https://example.com/600x400.png
 ```
 
-### Boolean
+#### Boolean
 
 True or false value.
 
@@ -157,7 +163,7 @@ examples:
   - false
 ```
 
-### Integer
+#### Integer
 
 Whole number value without decimal places.
 
@@ -167,7 +173,7 @@ examples:
   - 42
 ```
 
-### Number
+#### Number
 
 Numeric value that can include decimal places.
 
@@ -177,7 +183,7 @@ examples:
   - 3.14
 ```
 
-### List: text
+#### List: text
 
 A predefined list of text options that the user can select from.
 
@@ -195,7 +201,7 @@ examples:
   - option1
 ```
 
-### List: integer
+#### List: integer
 
 A predefined list of integer options that the user can select from.
 
@@ -213,7 +219,7 @@ examples:
   - 1
 ```
 
-## Enum value naming
+## Enums
 
 Enum values must use lowercase, machine-friendly identifiers. Use `meta:enum` to
 provide human-readable display labels for the UI.
@@ -231,7 +237,7 @@ meta:enum:
 examples:
   - left_aligned
 
-# Wrong - using display labels as enum values
+# Wrong
 enum:
   - Left aligned
   - Center aligned
@@ -263,6 +269,11 @@ const variants = cva("base-classes", {
 Slots allow other components to be embedded within a component. In React, slots
 are received as props containing the rendered children.
 
+`slots` must be either:
+
+1. An object map keyed by slot name (`content`, `sidebar`, etc.)
+2. `[]` when the component has no slots
+
 ```yaml
 slots:
   content:
@@ -279,8 +290,17 @@ const Section = ({ width, content }) => {
 };
 ```
 
-Use an empty array when the component has no slots:
+Use `slots: []` only when the component has no slots:
 
 ```yaml
 slots: []
+```
+
+Do not use arrays of slot objects:
+
+```yaml
+# Wrong
+slots:
+  - name: content
+    title: Content
 ```
